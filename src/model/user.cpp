@@ -9,9 +9,9 @@ User::User() {
 	string senha = "";
 }
 
-User::User(string name, string pswd) {
-	this->name = name;
-	this->pswd = pswd;
+User::User(string _name, string _pswd) {
+	this->name = _name;
+	this->pswd = _pswd;
 }
 
 string User::getName() {
@@ -22,10 +22,24 @@ string User::getPswd() {
 	return this->pswd;
 }
 
-void User::setName(string name) {
-	this->name = name;
+void User::setName(string _name) {
+	this->name = _name;
 }
 
-void User::setPswd(string pswd) {
-	this->pswd = pswd;
+void User::setPswd(string _pswd) {
+	this->pswd = _pswd;
 }
+
+/*
+  abstract methods, they will be implemented in the subclasses
+*/
+
+void addUser() {}
+
+void removeUser() {}
+
+void addFile() {}
+
+void removeFile() {}
+
+void listFile() {}
