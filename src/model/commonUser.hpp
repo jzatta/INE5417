@@ -1,6 +1,8 @@
 #ifndef _COMMON_USER_
 #define _COMMON_USER_
 
+#pragma once
+
 #include "user.hpp"
 #include <iostream>
 #include <string>

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "commonUser.hpp"
 #include <iostream>
 #include <string>

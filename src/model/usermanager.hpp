@@ -6,14 +6,16 @@
 #include "manager.hpp"
 #include <iostream>
 #include <string>
+#include <list>
 
 using namespace std;
 
 class UserManager : public Manager {
-  private;
-    User* users;
+  private:
+    list<User> users;
   public:
-    Manager(User* _users);
+    UserManager();
+    UserManager(list<User> _users);
     void exclude(User usr);
     void create(User usr);
 };

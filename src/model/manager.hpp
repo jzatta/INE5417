@@ -1,6 +1,8 @@
 #ifndef _MANAGER_
 #define _MANAGER_
 
+#pragma once
+
 #include <iostream>
 #include <string>
 

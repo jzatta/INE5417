@@ -12,6 +12,12 @@ all: main.o user.o
 user.o: src/model/user.cpp src/model/user.hpp
 	${CC} ${CFLAGS1} -o user.o src/model/user.cpp
 
+manager.o: src/model/manager.cpp src/model/manager.hpp
+	${CC} ${CFLAGS1} -o manager.o src/model/manager.cpp
+
+usermanager.o: src/model/usermanager.cpp src/model/usermanager.hpp
+	${CC} ${CFLAGS1} -o usermanager.o src/model/usermanager.cpp
+
 main.o: src/control/main.cpp src/model/user.hpp
 	${CC} ${CFLAGS1} -o main.o src/control/main.cpp
 

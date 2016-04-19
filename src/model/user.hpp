@@ -1,6 +1,8 @@
 #ifndef _USER_
 #define _USER_
 
+#pragma once
+
 #include <iostream>
 #include <string>
 

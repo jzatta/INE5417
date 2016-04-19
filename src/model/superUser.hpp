@@ -1,6 +1,8 @@
 #ifndef _SUPER_USER_
 #define _SUPER_USER_
 
+#pragma once
+
 #include "user.hpp"
 #include "usermanager.hpp"
 #include <iostream>
