@@ -20,10 +20,10 @@ public:
   	SuperUser();
   	SuperUser(const char *_name, const char *_pswd);
   	SuperUser(string *_name, string *_pswd);
-  	virtual void addUser(UserManager *uM)    ;
-	virtual void removeUser(UserManager *uM) ;
-	virtual void addFile(FileManager *fM)    ;
-	virtual void removeFile(FileManager *fM) ;
+	virtual string *removeUser(UserManager *uM, string *_username) ;
+	virtual string *removeFile(FileManager *fM, string *_filename) ;
+  	virtual void addUser(UserManager *uM, string *_name, string *_pswd, string *_permission);
+	virtual void addFile(FileManager *fM, string *_filename)    ;
 	virtual list<string*> *listFile(FileManager *fM)   ;
 };
 

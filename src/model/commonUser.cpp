@@ -14,29 +14,19 @@ CommonUser::CommonUser() : User() {}
 
 // common users doesn't have the ability to add another user
 void CommonUser::addUser(UserManager *uM) {
-	cout << "access denied" << endl; // remove, throw in vision
-  UI::pause();
+  // in control, verify instance type and throw vision exception.
 }
 // common users doesn't have the ability to remove another user
-void CommonUser::removeUser(UserManager *uM) {
-	cout << "access denied" << endl; // remove, throw in vision
-  UI::pause();
+string *CommonUser::removeUser(UserManager *uM, string *_username) {
+  // the same thing that the above one
 }
 
-void CommonUser::addFile(FileManager *fM) {
-  char name[100];
-  
-  UI::clearScreen();
-  cout << "Insert file name" << endl;
-  cin.getline(name, sizeof(name));
+void CommonUser::addFile(FileManager *fM, string *_fname) {
   // need to check if exists the file
-  fM->create(new File(name));
-  
-  cout << "File created" << endl;
-  UI::pause();
+  fM->create(new File(_fname));
 }
 
-void CommonUser::removeFile(FileManager *fM) {
+string *CommonUser::removeFile(FileManager *fM, string *_filename) {
   // ??
 }
 
