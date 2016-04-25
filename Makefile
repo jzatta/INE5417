@@ -1,25 +1,25 @@
+
 CC = g++
-CFLAGS1 = -Wall -c -Isrc/model/
+CFLAGS1 = -Wall -c -Isrc/model/ -Isrc/control/
 RM = rm
 EXEC = main
 TRASH = *.o main
 
-all: main.o user.o
-	${CC} -o main user.o main.o
+OBJ:=main.o UI.o user.o superUser.o usermanager.o commonUser.o manager.o
+
+.PHONY: all
+all: ${OBJ}
+	${CC} -o main $?
 	./${EXEC}
 	${RM}	${TRASH}
 
-user.o: src/model/user.cpp src/model/user.hpp
-	${CC} ${CFLAGS1} -o user.o src/model/user.cpp
 
-manager.o: src/model/manager.cpp src/model/manager.hpp
-	${CC} ${CFLAGS1} -o manager.o src/model/manager.cpp
+%.o: src/control/%.cpp
+	${CC} ${CFLAGS1} -o $@ $<
 
-usermanager.o: src/model/usermanager.cpp src/model/usermanager.hpp
-	${CC} ${CFLAGS1} -o usermanager.o src/model/usermanager.cpp
+%.o: src/model/%.cpp
+	${CC} ${CFLAGS1} -o $@ $<
 
-main.o: src/control/main.cpp src/model/user.hpp
-	${CC} ${CFLAGS1} -o main.o src/control/main.cpp
-
-clean: 
+.PHONY: clean
+clean:
 	${RM} ${TRASH}

@@ -1,3 +1,4 @@
+
 #include "user.hpp"
 #include <iostream>
 #include <string>
@@ -5,41 +6,37 @@
 using namespace std;
 
 User::User() {
-	string name = "";
-	string senha = "";
+	this->name = new string();
+	this->pswd = new string();
 }
 
-User::User(string _name, string _pswd) {
+User::User(string *_name, string *_pswd) {
 	this->name = _name;
 	this->pswd = _pswd;
 }
 
-string User::getName() {
+User::User(const char *_name, const char *_pswd) {
+  this->name = new string(_name);
+  this->pswd = new string(_pswd);
+}
+
+string *User::getName() {
 	return this->name;
 }
 
-string User::getPswd() {
-	return this->pswd;
+bool User::getAuth(string *_pswd) {
+	if (this->pswd->compare(*_pswd)) {
+    return false;
+  }
+  return true;
 }
 
-void User::setName(string _name) {
+void User::setName(string *_name) {
+  delete this->name;
 	this->name = _name;
 }
 
-void User::setPswd(string _pswd) {
+void User::setPswd(string *_pswd) {
+  delete this->pswd;
 	this->pswd = _pswd;
 }
-
-/*
-  abstract methods, they will be implemented in the subclasses
-*/
-
-void addUser() {}
-
-void removeUser() {}
-
-void addFile() {}
-
-void removeFile() {}
-
-void listFile() {}

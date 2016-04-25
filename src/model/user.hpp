@@ -1,39 +1,41 @@
 #ifndef _USER_
 #define _USER_
 
-#pragma once
+class User;
 
 #include <iostream>
 #include <string>
+#include "usermanager.hpp"
+#include "filemanager.hpp"
 
 using namespace std;
 
 class User {
 private:
-	string name;
-	string pswd;
+	string *name;
+	string *pswd;
 
 public:
-	User();
-	User(string _name, string _pswd);
+  User();
+	User(const char *_name, const char *_pswd);
+	User(string *_name, string *_pswd);
 	/*
 		getters and setters
 	*/
-	string getName();
-	string getPswd();
-	void setName(string _name);
-	void setPswd(string _pswd);
+	string *getName();
+	bool getAuth(string *_pswd);
+	void setName(string *_name);
+	void setPswd(string *_pswd);
 
 	/*
 		non "getters and setters" stuff
 	*/
 
-	void addUser();
-	void removeUser();
-	void addFile();
-	void removeFile();
-	void listFile();
-	// maybe a search file method
+	virtual void addUser(UserManager *uM) = 0;
+	virtual void removeUser(UserManager *uM) = 0;
+	virtual void addFile(FileManager *uF) = 0;
+	virtual void removeFile(FileManager *uF) = 0;
+	virtual void listFile(FileManager *uF) = 0;
 };
 
 #endif

@@ -1,23 +1,41 @@
-#pragma once
 
 #include "usermanager.hpp"
 #include <iostream>
 #include <string>
-
-using namespace std
+#include "superUser.hpp"
 
 UserManager::UserManager() {
-  this->users.empty();
+  this->users = new list<User*>();
+  this->users->push_back(new SuperUser("root", "root"));
 }
 
-UserManager::UserManager(list<User> _users) {
+UserManager::UserManager(list<User*> *_users) {
   this->users = _users;
 }
 
-void UserManager::exclude(User usr) {
-  this->users.remove_if(usr);
+bool UserManager::exclude(string *usr) {
+  std::list<User*>::iterator it=users->begin();
+  for (; it != users->end(); ++it) {
+    if (!(*it)->getName()->compare(*usr)) {
+      users->erase(it);
+      return true;
+    }
+  }
+  return false;
 }
 
-void UserManager::create(User usr) {
-  this->users.insert(usr);
+void UserManager::create(void *usr) {
+  this->users->push_back((User*)usr);
+}
+
+User *UserManager::login(string *name, string *password) {
+  std::list<User*>::iterator it=users->begin();
+  for (; it != users->end(); ++it) {
+    if (!(*it)->getName()->compare(*name)) {
+      if ( (*it)->getAuth(password) ) {
+        return *it;
+      }
+    }
+  }
+  return NULL;
 }

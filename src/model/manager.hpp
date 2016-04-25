@@ -1,7 +1,7 @@
 #ifndef _MANAGER_
 #define _MANAGER_
 
-#pragma once
+class Manager;
 
 #include <iostream>
 #include <string>
@@ -18,8 +18,8 @@ class Manager {
 
   public:
     Manager();
-    void exclude();
-    void create();
+    virtual bool exclude(string *) = 0;
+    virtual void create(void *) = 0;
 };
 
 #endif
