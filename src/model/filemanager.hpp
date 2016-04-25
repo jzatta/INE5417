@@ -12,13 +12,16 @@ class FileManager;
 using namespace std;
 
 class FileManager : public Manager {
-  private:
-    list<File*> *files;
-  public:
-    FileManager();
-    FileManager(list<File*> *_files);
-    bool exclude(void *fileName);
-    void create(void *fileName);
+private:
+  list<File*> *files;
+public:
+  FileManager();
+  FileManager(list<File*> *_files);
+  bool exclude(string *fileName);
+  void create(void *file);
+  File *getFile(string *fileName);
+  list<File*> *getListFiles();
+  virtual void save();
 };
 
 #endif

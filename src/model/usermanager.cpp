@@ -3,10 +3,12 @@
 #include <iostream>
 #include <string>
 #include "superUser.hpp"
+#include "commonUser.hpp"
 
 UserManager::UserManager() {
   this->users = new list<User*>();
   this->users->push_back(new SuperUser("root", "root"));
+  this->users->push_back(new CommonUser("user", "user"));
 }
 
 UserManager::UserManager(list<User*> *_users) {
@@ -38,4 +40,8 @@ User *UserManager::login(string *name, string *password) {
     }
   }
   return NULL;
+}
+
+void UserManager::save() {
+  // must save in a file ".users.q"
 }

@@ -1,42 +1,47 @@
 
-#include "File.hpp"
+#include "filemanager.hpp"
 #include <iostream>
 #include <string>
 #include <list>
 
-FileManager() {
-  this->users = new list<File*>();
-  this->users->push_back(new SuperUser("root", "root"));
+FileManager::FileManager() {
+  this->files = new list<File*>();
 }
 
-FileManager(list<File*> *_files);
-bool exclude(void *fileName);
-void create(void *fileName);
-
-#endif
-
-
-
-UserManager::UserManager() {
-  this->users = new list<User*>();
-  this->users->push_back(new SuperUser("root", "root"));
+FileManager::FileManager(list<File*> *_files) {
+  this->files = _files;
 }
 
-UserManager::UserManager(list<User*> *_users) {
-  this->users = _users;
-}
-
-bool UserManager::exclude(string *usr) {
-  std::list<User*>::iterator it=users->begin();
-  for (; it != users->end(); ++it) {
-    if (!(*it)->getName()->compare(*usr)) {
-      users->erase(it);
+bool FileManager::exclude(string *fileName) {
+  std::list<File*>::iterator it=files->begin();
+  for (; it != files->end(); ++it) {
+    if (!(*it)->getName()->compare(*fileName)) {
+      files->erase(it);
       return true;
     }
   }
   return false;
 }
 
-void UserManager::create(void *usr) {
-  this->users->push_back((User*)usr);
+void FileManager::create(void *file) {
+  this->files->push_back((File*)file);
+}
+
+File *FileManager::getFile(string *fileName) {
+  std::list<File*>::iterator it=files->begin();
+  for (; it != files->end(); ++it) {
+    if (!(*it)->getName()->compare(*fileName)) {
+      return *it;
+    }
+  }
+  return NULL;
+}
+
+list<File*> *FileManager::getListFiles() {
+  // maybe return list of name of files
+  return this->files;
+}
+
+void FileManager::save() {
+  // must save in a file ".files.q"
 }

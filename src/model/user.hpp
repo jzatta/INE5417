@@ -33,9 +33,9 @@ public:
 
 	virtual void addUser(UserManager *uM) = 0;
 	virtual void removeUser(UserManager *uM) = 0;
-	virtual void addFile(FileManager *uF) = 0;
-	virtual void removeFile(FileManager *uF) = 0;
-	virtual void listFile(FileManager *uF) = 0;
+	virtual void addFile(FileManager *fM) = 0;
+	virtual void removeFile(FileManager *fM) = 0;
+	virtual list<string*> *listFile(FileManager *fM) = 0;
 };
 
 #endif

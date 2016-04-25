@@ -6,6 +6,7 @@ class Commonuser;
 #include <iostream>
 #include <string>
 #include "user.hpp"
+#include "UI.hpp"
 
 using namespace std;
 
@@ -19,9 +20,9 @@ public:
   
   virtual void addUser(UserManager *uM);
 	virtual void removeUser(UserManager *uM);
-	virtual void addFile(FileManager *uF);
-	virtual void removeFile(FileManager *uF);
-	virtual void listFile(FileManager *uF);
+	virtual void addFile(FileManager *fM);
+	virtual void removeFile(FileManager *fM);
+	virtual list<string*> *listFile(FileManager *fM);
 };
 
 #endif

@@ -9,6 +9,7 @@ class SuperUser;
 #include "usermanager.hpp"
 #include "filemanager.hpp"
 #include "commonUser.hpp"
+#include "UI.hpp"
 
 using namespace std;
 
@@ -21,9 +22,9 @@ public:
   SuperUser(string *_name, string *_pswd);
   virtual void addUser(UserManager *uM)    ;
 	virtual void removeUser(UserManager *uM) ;
-	virtual void addFile(FileManager *uF)    ;
-	virtual void removeFile(FileManager *uF) ;
-	virtual void listFile(FileManager *uF)   ;
+	virtual void addFile(FileManager *fM)    ;
+	virtual void removeFile(FileManager *fM) ;
+	virtual list<string*> *listFile(FileManager *fM)   ;
 };
 
 #endif

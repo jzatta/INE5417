@@ -15,22 +15,37 @@ CommonUser::CommonUser() : User() {}
 // common users doesn't have the ability to add another user
 void CommonUser::addUser(UserManager *uM) {
 	cout << "access denied" << endl; // remove, throw in vision
-  fgetc(stdin); // pause
+  UI::pause();
 }
 // common users doesn't have the ability to remove another user
 void CommonUser::removeUser(UserManager *uM) {
 	cout << "access denied" << endl; // remove, throw in vision
-  fgetc(stdin); // pause
+  UI::pause();
 }
 
-void CommonUser::addFile(FileManager *uF) {
-  // what we gonna do with this method?
+void CommonUser::addFile(FileManager *fM) {
+  char name[100];
+  
+  UI::clearScreen();
+  cout << "Insert file name" << endl;
+  cin.getline(name, sizeof(name));
+  // need to check if exists the file
+  fM->create(new File(name));
+  
+  cout << "File created" << endl;
+  UI::pause();
 }
 
-void CommonUser::removeFile(FileManager *uF) {
+void CommonUser::removeFile(FileManager *fM) {
   // ??
 }
 
-void CommonUser::listFile(FileManager *uF) {
-  // the files will be organized in an atribute, a list or something?
+list<string*> *CommonUser::listFile(FileManager *fM) {
+  list<string*> *listFilesName = new list<string*>;
+  list<File*> *listFiles = fM->getListFiles();
+  list<File*>::iterator it=listFiles->begin();
+  for (; it != listFiles->end(); ++it) {
+    listFilesName->push_back((*it)->getName());
+  }
+  return listFilesName;
 }

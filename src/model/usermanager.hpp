@@ -20,6 +20,7 @@ class UserManager : public Manager {
     User *login(string *name, string *password);
     bool exclude(string *usr);
     void create(void *usr);
+    void save();
 };
 
 #endif

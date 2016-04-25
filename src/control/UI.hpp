@@ -16,13 +16,15 @@ using namespace std;
 class UI {
 private:
   UserManager *uM;
-//   FileManager *fM;
+  FileManager *fM;
   User *logged;
 public:
   UI();
 
   void run();
   void login();
+  static void clearScreen();
+  static void pause();
 };
 
 #endif

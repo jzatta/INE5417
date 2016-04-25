@@ -5,7 +5,8 @@ RM = rm
 EXEC = main
 TRASH = *.o main
 
-OBJ:=main.o UI.o user.o superUser.o usermanager.o commonUser.o manager.o
+OBJ=main.o UI.o user.o superUser.o usermanager.o commonUser.o manager.o
+OBJ+=filemanager.o File.o Log.o
 
 .PHONY: all
 all: ${OBJ}

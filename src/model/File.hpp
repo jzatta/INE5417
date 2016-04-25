@@ -5,24 +5,29 @@ class File;
 
 #include <iostream>
 #include <string>
+#include <list>
 #include "Log.hpp"
 
 using namespace std;
 
 class File {
 private:
-	string *name;
-  list<Log*> *log;
+  string *fileName;
+  list<Log*> *logs;
 
 public:
-	File(const char *_name);
-	File(string *_name);
+  File(const char *_name);
+  File(string *_name);
   
-	string *getName();
-	void setName(string *_name);
+  string *getName();
+  void setName(string *_name);
+  
+  void modify();
 
-	void addLog(Log *log);
-	list<Log*> *listLog();
+  void addLog(Log *log);
+  list<Log*> *listLogs();
+  
+  void save();
 };
 
 #endif
