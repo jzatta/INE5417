@@ -20,7 +20,7 @@ public:
   Manager();
   virtual bool exclude(string *) = 0;
   virtual void create(void *) = 0;
-  virtual void save();
+  virtual void save()=0;
 };
 
 #endif

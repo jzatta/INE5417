@@ -11,19 +11,20 @@ using namespace std;
 
 class Log {
 private:
-  string *change;
-  string *owner;
+  	string *change;
+  	string *owner;
 	time_t *date;
 
 public:
 	Log(const char *change, User *owner);
 	Log(string *change, User *owner);
+	void *saveLog(string *_logname);
 	/*
 		getters and setters
 	*/
 	time_t *getTime();
 	string *getChange();
-  string *getOwner();
+  	string *getOwner();
 	void setChange(string *_chenge);
 };
 

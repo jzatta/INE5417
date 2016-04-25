@@ -17,10 +17,10 @@ class SuperUser : public User {
 private:
   // ?
 public:
-  SuperUser();
-  SuperUser(const char *_name, const char *_pswd);
-  SuperUser(string *_name, string *_pswd);
-  virtual void addUser(UserManager *uM)    ;
+  	SuperUser();
+  	SuperUser(const char *_name, const char *_pswd);
+  	SuperUser(string *_name, string *_pswd);
+  	virtual void addUser(UserManager *uM)    ;
 	virtual void removeUser(UserManager *uM) ;
 	virtual void addFile(FileManager *fM)    ;
 	virtual void removeFile(FileManager *fM) ;

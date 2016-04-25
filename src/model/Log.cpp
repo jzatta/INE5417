@@ -1,4 +1,4 @@
-
+  
 #include "Log.hpp"
 #include <time.h>
 #include <iostream>
@@ -19,6 +19,15 @@ Log::Log(string *_change, User *_owner) {
   this->owner = _owner->getName();
   this->date = (time_t *)malloc(sizeof(time_t));
   time(this->date);
+}
+
+void *Log::saveLog(string *_logname) {
+  ofstream _file;
+  _file.open(_logname, ios::out);
+  _file << this->getOwner();
+  _file << (string*)this->getTime();
+  _file << this->getChange();
+  _file.close();
 }
 
 time_t *Log::getTime() {
