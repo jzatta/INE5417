@@ -11,7 +11,7 @@ using namespace std;
 
 void GUI::permissionException() {
 	GUI::clearScreen();
-	cout << "acess denied" << endl;
+	cout << "Access Denied!" << endl;
 	GUI::pause();
 }
 
@@ -62,14 +62,26 @@ void GUI::fileCreated() {
 	GUI::pause();
 }
 
-void GUI::deleteNotification(string *_type, string *_verify) {
+void GUI::userRemoved() {
 	GUI::clearScreen();
-    cout << *_type + " " + *_verify << endl;
-    GUI::pause();
+	cout << "User removed" << endl;
+	GUI::pause();
 }
 
-void GUI::fileDontExist() {
-  cout << "File dont exist." << endl;
+void GUI::fileRemoved() {
+	GUI::clearScreen();
+	cout << "File removed" << endl;
+	GUI::pause();
+}
+
+void GUI::deleteNotification(string *_type, string *_verify) {
+	GUI::clearScreen();
+  cout << *_type + " " + *_verify << endl;
+  GUI::pause();
+}
+
+void GUI::dontExist() {
+  cout << "Dont exist." << endl;
   GUI::pause();
 }
 
@@ -164,8 +176,8 @@ void GUI::listStrings(list<string*> *listOfStrings) {
 }
 
 void GUI::listLog(time_t *time, string *owner, string *log) {
-  cout << asctime(localtime(time)) << endl;
-  cout << owner->c_str() << endl;
+  cout << asctime(localtime(time));
+  cout << owner->c_str() << endl << endl;
   cout << log->c_str() << endl << endl;
 }
 

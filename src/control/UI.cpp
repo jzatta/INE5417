@@ -18,6 +18,7 @@ void UI::run() {
     string *uPswd;
     string *fName;
     string *fLog;
+    string *ret;
     File *file;
     list<string*> *listOfFiles;
     list<Log*> *listLogs;
@@ -37,7 +38,21 @@ void UI::run() {
         
       case 2: // remove user
         uName = GUI::getUserName("remove");
-        logged->removeUser(uM, uName);
+        ret = logged->removeUser(uM, uName);
+        if (!ret->compare("access denied")) {
+          GUI::permissionException();
+        }
+        else if (!ret->compare("removed")) {
+          GUI::userRemoved();
+          if (!logged->getName()->compare(*uName)) {
+            logged = NULL;
+            break;
+          }
+        }
+        else if (!ret->compare("don't exist")) {
+          GUI::dontExist();
+        }
+        delete ret;
         delete uName;
         continue;
         
@@ -55,7 +70,7 @@ void UI::run() {
         delete fName;
         
         if (file == NULL) {
-          GUI::fileDontExist();
+          GUI::dontExist();
           continue;
         }
         
@@ -76,7 +91,7 @@ void UI::run() {
         delete uName;
         
         if (file == NULL) {
-          GUI::fileDontExist();
+          GUI::dontExist();
           continue;
         }
         

@@ -19,6 +19,7 @@ void CommonUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _su
 // common users doesn't have the ability to remove another user
 string *CommonUser::removeUser(UserManager *uM, string *_username) {
   // the same thing that the above one
+  return new string("access denied");
 }
 
 void CommonUser::addFile(FileManager *fM, string *_fname) {

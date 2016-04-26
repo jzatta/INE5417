@@ -17,8 +17,10 @@ public:
 	static void permissionException(); // just say if user has or not permission to do the action
 	static void userCreated(); // just say if user was created or not
 	static void fileCreated(); // just say if file was created or not
+	static void userRemoved();
+	static void fileRemoved();
 	static void deleteNotification(string *_type, string *_verify); // @type assumes file or user, @verify tells if file/user was sucessfully removed
-  static void fileDontExist();
+  static void dontExist();
 	static string *getFileName(const char *_param); // @_param is a parameter in UI to tell if is a add or delete method
 	static string *getUserName(const char *_param); // @_param is a parameter in UI to tell if is a add or delete method
 	static string *getUserPswd(); // get the user password from the keyboard
