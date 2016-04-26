@@ -40,3 +40,8 @@ void User::setPswd(string *_pswd) {
   delete this->pswd;
 	this->pswd = _pswd;
 }
+
+User::~User() {
+  delete this->name;
+  delete this->pswd;
+}

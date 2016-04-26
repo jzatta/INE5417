@@ -26,8 +26,6 @@ public:
 
   void addLog(Log *log);
   list<Log*> *listLogs();
-  
-  void save();
 };
 
 #endif

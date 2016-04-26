@@ -19,6 +19,7 @@ public:
   User();
 	User(const char *_name, const char *_pswd);
 	User(string *_name, string *_pswd);
+  virtual ~User();
 	/*
 		getters and setters
 	*/

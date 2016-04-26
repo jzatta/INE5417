@@ -5,6 +5,7 @@ class Log;
 
 #include <iostream>
 #include <string>
+#include <stdio.h>
 #include "user.hpp"
 
 using namespace std;
@@ -24,7 +25,7 @@ public:
 	*/
 	time_t *getTime();
 	string *getChange();
-  	string *getOwner();
+  string *getOwner();
 	void setChange(string *_chenge);
 };
 

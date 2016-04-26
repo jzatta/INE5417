@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <stdio.h>
 #include "Log.hpp"
 
 using namespace std;
@@ -39,8 +40,4 @@ void File::addLog(Log *log) {
 list<Log*> *File::listLogs() {
   // maybe return a list of strings
   return logs;
-}
-
-void File::save() {
-  // must save logs in "." + filename + ".qlog"
 }
