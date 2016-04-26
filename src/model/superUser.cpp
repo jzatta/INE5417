@@ -13,9 +13,9 @@ SuperUser::SuperUser(string *_name, string *_pswd) : User(_name, _pswd) {}
 SuperUser::SuperUser() : User() {}
 
 // common users doesn't have the ability to add another user
-void SuperUser::addUser(UserManager *uM, string *_name, string *_pswd, string *_permission) {
+void SuperUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _super) {
   User *usr;
-  if (!strcmp(_permission, "yes")) {
+  if (_super) {
     usr = new SuperUser(_name, _pswd);
   } else {
     usr = new CommonUser(_name, _pswd);
@@ -26,10 +26,12 @@ void SuperUser::addUser(UserManager *uM, string *_name, string *_pswd, string *_
 
 // common users doesn't have the ability to remove another user
 string *SuperUser::removeUser(UserManager *uM, string *_username) {
-  string verify = "don't exist";
+  string *verify = new string("don't exist");
   // need to check if exists the user
-  if (uM->exclude(_username))
-    verify = "removed";
+  if (uM->exclude(_username)) {
+    delete verify;
+    verify = new string("removed");
+  }
   return verify;
 }
 
@@ -38,9 +40,11 @@ void SuperUser::addFile(FileManager *fM, string *_filename) {
 }
 
 string *SuperUser::removeFile(FileManager *fM, string *_filename) {
-  string verify = "don't exist";
+  string *verify = new string("don't exist");
   if (fM->exclude(_filename)) {
-    verify = "removed";
+    delete verify;
+    verify = new string("removed");
+  }
   return verify;
 }
 

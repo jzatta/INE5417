@@ -13,7 +13,7 @@ CommonUser::CommonUser(string *_name, string *_pswd) : User(_name, _pswd) {}
 CommonUser::CommonUser() : User() {}
 
 // common users doesn't have the ability to add another user
-void CommonUser::addUser(UserManager *uM) {
+void CommonUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _super) {
   // in control, verify instance type and throw vision exception.
 }
 // common users doesn't have the ability to remove another user
@@ -27,7 +27,12 @@ void CommonUser::addFile(FileManager *fM, string *_fname) {
 }
 
 string *CommonUser::removeFile(FileManager *fM, string *_filename) {
-  // ??
+  string *verify = new string("don't exist");
+  if (fM->exclude(_filename)) {
+    delete verify;
+    verify = new string("removed");
+  }
+  return verify;
 }
 
 list<string*> *CommonUser::listFile(FileManager *fM) {

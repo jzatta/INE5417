@@ -1,10 +1,9 @@
 
 #include "UI.hpp"
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "GUI.hpp"
 
 UI::UI() {
   // must initialize uM and fM reading from BD/conf files
@@ -21,7 +20,7 @@ void UI::run() {
       this->login();
     }
     
-    UI::clearScreen();
+    GUI::clearScreen();
     cout << "list of commands:" << endl;
     cout << "add user" << endl;
     cout << "remove user" << endl;
@@ -35,29 +34,30 @@ void UI::run() {
     cin.getline(command, sizeof(command));
     
     if (!strcmp(command, "add user")) {
-      logged->addUser(uM);
+      logged->addUser(uM, GUI::getUserName("create"), GUI::getUserPswd(), GUI::getUserResp());
+      GUI::userCreated();
     }
     else if (!strcmp(command, "remove user")) {
-      logged->removeUser(uM);
+      logged->removeUser(uM, GUI::getUserName("remove"));
     }
     else if (!strcmp(command, "add file")) {
-      logged->addFile(fM);
+      logged->addFile(fM, GUI::getFileName("create"));
     }
     else if (!strcmp(command, "remove file")) {
-      logged->removeFile(fM);
+      logged->removeFile(fM, GUI::getFileName("remove"));
     }
     else if (!strcmp(command, "modify file")) {
-      UI::clearScreen();
+      GUI::clearScreen();
       cout << "Insert file name to modify" << endl;
       cin.getline(command, sizeof(command));
       string *sName = new string(command);
       File *file = fM->getFile(sName);
       delete sName;
       
-      UI::clearScreen();
+      GUI::clearScreen();
       if (file == NULL) {
         cout << "File dont exist." << endl;
-        UI::pause();
+        GUI::pause();
         continue;
       }
       
@@ -73,7 +73,7 @@ void UI::run() {
       list<string*> *listFiles;
       listFiles = logged->listFile(fM);
       
-      UI::clearScreen();
+      GUI::clearScreen();
       std::list<string*>::iterator it=listFiles->begin();
       if (it == listFiles->end()) {
         cout << "No files." << endl;
@@ -82,20 +82,20 @@ void UI::run() {
         cout << (*it)->c_str() << endl;
       }
       delete listFiles;
-      UI::pause();
+      GUI::pause();
     }
     else if (!strcmp(command, "list logs")) {
-      UI::clearScreen();
+      GUI::clearScreen();
       cout << "What file you want to list logs." << endl;
       cin.getline(command, sizeof(command));
       string *sName = new string(command);
       File *file = fM->getFile(sName);
       delete sName;
       
-      UI::clearScreen();
+      GUI::clearScreen();
       if (file == NULL) {
         cout << "File dont exist." << endl;
-        UI::pause();
+        GUI::pause();
         continue;
       }
       
@@ -108,7 +108,7 @@ void UI::run() {
         cout << (*it)->getOwner()->c_str() << endl << endl;
         cout << (*it)->getChange()->c_str() << endl << endl;
       }
-      UI::pause();
+      GUI::pause();
     }
     else if (!strcmp(command, "exit")) {
       this->logged = NULL;
@@ -117,34 +117,18 @@ void UI::run() {
 }
 
 void UI::login() {
-  char user[100], passwd[100];
   string *sUser, *sPasswd;
-  UI::clearScreen();
-  cout << "User name:" << endl;
-  cin.getline(user, sizeof(user));
-  cout << "Password" << endl;
-  cin.getline(passwd, sizeof(passwd));
   
-  sUser = new string(user);
-  sPasswd = new string(passwd);
+  sUser = GUI::getUserLogin();
+  sPasswd = GUI::getPswdLogin();
   
   this->logged = uM->login(sUser, sPasswd);
   
   if (this->logged == NULL) {
     cout << "User name or password doesnt match" << endl; // <<--check
-    UI::pause();
+    GUI::pause();
   }
   
   delete sUser;
   delete sPasswd;
-}
-
-void UI::clearScreen() {
-  cout << "\033[H\033[2J" << endl;
-  return;
-}
-
-void UI::pause() {
-  fgetc(stdin); // pause
-  return;
 }

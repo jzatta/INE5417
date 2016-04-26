@@ -23,8 +23,6 @@ public:
 
   void run();
   void login();
-  static void clearScreen();
-  static void pause();
 };
 
 #endif

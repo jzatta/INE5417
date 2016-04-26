@@ -33,8 +33,8 @@ public:
 
 	virtual string *removeUser(UserManager *uM, string *_username) = 0;
 	virtual string *removeFile(FileManager *fM, string *_filename) = 0;
-	virtual void addUser(UserManager *uM) = 0;
-	virtual void addFile(FileManager *fM) = 0;
+	virtual void addUser(UserManager *uM, string *_name, string *_pswd, bool _super) = 0;
+	virtual void addFile(FileManager *fM, string *_filename) = 0;
 	virtual list<string*> *listFile(FileManager *fM) = 0;
 };
 

@@ -2,6 +2,7 @@
 #include "Log.hpp"
 #include <time.h>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <malloc.h>
 
@@ -22,12 +23,12 @@ Log::Log(string *_change, User *_owner) {
 }
 
 void *Log::saveLog(string *_logname) {
-  ofstream _file;
-  _file.open(_logname, ios::out);
-  _file << this->getOwner();
-  _file << (string*)this->getTime();
-  _file << this->getChange();
-  _file.close();
+  ofstream myFile;
+  myFile.open(_logname->c_str());
+  myFile << this->getOwner();
+  myFile << (string*)this->getTime();
+  myFile << this->getChange();
+  myFile.close();
 }
 
 time_t *Log::getTime() {
