@@ -5,6 +5,6 @@ using namespace std;
 
 int main() {
 	UI ui;
-  ui.run();
+  	ui.run();
 	return 0;
 }

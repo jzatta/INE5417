@@ -1,7 +1,7 @@
 
 CC = g++
 CFLAGS1 = -Wall -c -Isrc/model/ -Isrc/control/ -Isrc/vision/
-RM = rm
+RM = rm 
 EXEC = main
 TRASH = *.o main
 

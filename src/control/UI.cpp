@@ -3,6 +3,7 @@
 
 #include <string.h>
 #include <time.h>
+#include <cstdlib>
 #include "GUI.hpp"
 
 UI::UI() {
@@ -13,7 +14,10 @@ UI::UI() {
 }
 
 void UI::run() {
-  while (true) {
+  while (this->logged == NULL) {
+    this->login();
+  }
+  while (this->logged != NULL) {
     string *uName;
     string *uPswd;
     string *fName;
@@ -24,9 +28,6 @@ void UI::run() {
     list<Log*> *listLogs;
     std::list<Log*>::iterator itLog;
     
-    while (this->logged == NULL) {
-      this->login();
-    }
     
     switch (GUI::mainScreen()) {
       case 1: // add user
