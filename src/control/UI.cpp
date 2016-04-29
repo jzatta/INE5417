@@ -3,7 +3,6 @@
 
 #include <string.h>
 #include <time.h>
-#include <cstdlib>
 #include "GUI.hpp"
 
 UI::UI() {
@@ -105,8 +104,13 @@ void UI::run() {
         }
         GUI::pause();
         continue;
+
+      case 8:
+        this->logged = NULL;
+        this->login();
+        continue;
         
-      case 8: // exit
+      case 9: // exit
         this->logged = NULL;
         break;
         

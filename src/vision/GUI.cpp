@@ -132,6 +132,7 @@ int GUI::mainScreen() {
   cout << "modify file" << endl;
   cout << "list files" << endl;
   cout << "list logs" << endl;
+  cout << "change user" << endl;
   cout << "exit" << endl;
   
   cin.getline(command, sizeof(command));
@@ -157,8 +158,11 @@ int GUI::mainScreen() {
   else if (!strcmp(command, "list logs")) {
     return 7;
   }
-  else if (!strcmp(command, "exit")) {
+  else if (!strcmp(command, "change user")) {
     return 8;
+  }
+  else if (!strcmp(command, "exit")) {
+    return 9;
   }
   return 0;
 }
