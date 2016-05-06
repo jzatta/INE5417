@@ -1,6 +1,6 @@
 
 CC = g++
-CFLAGS1 = -Wall -c -Isrc/model/ -Isrc/control/ -Isrc/vision/
+CFLAGS1 = -std=c++11 -Wabi -Wall -c -Isrc/model/ -Isrc/control/ -Isrc/vision/
 RM = rm 
 EXEC = main
 TRASH = *.o main
@@ -15,13 +15,13 @@ all: ${OBJ}
 	${RM}	${TRASH}
 
 
-%.o: src/control/%.cpp
+%.o: src/control/%.cpp Makefile
 	${CC} ${CFLAGS1} -o $@ $<
 
-%.o: src/model/%.cpp
+%.o: src/model/%.cpp Makefile
 	${CC} ${CFLAGS1} -o $@ $<
 
-%.o: src/vision/%.cpp
+%.o: src/vision/%.cpp Makefile
 	${CC} ${CFLAGS1} -o $@ $<
 
 .PHONY: clean

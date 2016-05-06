@@ -105,7 +105,7 @@ void UI::run() {
         GUI::pause();
         continue;
 
-      case 8:
+      case 8: // change user
         this->logged = NULL;
         this->login();
         continue;

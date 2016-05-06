@@ -1,8 +1,8 @@
-
 #include <iostream>
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include "GUI.hpp"
 #include "UI.hpp"
@@ -17,25 +17,25 @@ void GUI::permissionException() {
 
 string *GUI::getFileName(const char *_param) {
 	char name[100];
-  	GUI::clearScreen();
-  	cout << "Insert file name to " << _param << endl;
-  	cin.getline(name, sizeof(name));
-  	return new string(name);
+  GUI::clearScreen();
+  cout << "Insert file name to " << _param << endl;
+  cin.getline(name, sizeof(name));
+  return new string(name);
 }
 
 string *GUI::getUserName(const char *_param) {
 	char name[100];
-  	GUI::clearScreen();
-  	cout << "Insert user name to " << _param << endl;
-  	cin.getline(name, sizeof(name));
-  	return new string(name);
+  GUI::clearScreen();
+  cout << "Insert user name to " << _param << endl;
+  cin.getline(name, sizeof(name));
+  return new string(name);
 }
 
 string *GUI::getUserPswd() {
-	char password[100];
+  char *password; // char* cuz getpass(string) returns char*
+	password  = new char[100];
 	GUI::clearScreen();
-	cout << "Insert password" << endl;
-  cin.getline(password, sizeof(password));
+	password = getpass("Insert Password\n"); // get the password without echoing in terminal
   return new string(password);
 }
 
@@ -95,11 +95,10 @@ string *GUI::getUserLogin() {
 }
 
 string *GUI::getPswdLogin() {
-  char passwd[100];
+  char *passwd;
+  passwd = new char[100];
   GUI::clearScreen();
-  cout << "Password" << endl;
-  cin.getline(passwd, sizeof(passwd));
-  
+  passwd = getpass("Password\n"); // get the password without echoing in terminal
   return new string(passwd);
 }
 
