@@ -18,9 +18,9 @@ private:
   
 public:
   Manager();
-  virtual bool exclude(string *) = 0;
+  virtual bool exclude(string *) = 0; // bool?
   virtual void create(void *) = 0;
-  virtual void save()=0;
+  virtual void save() = 0;
 };
 
 #endif

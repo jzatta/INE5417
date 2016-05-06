@@ -10,13 +10,13 @@
 using namespace std;
 
 void GUI::permissionException() {
-	GUI::clearScreen();
-	cout << "Access Denied!" << endl;
-	GUI::pause();
+  GUI::clearScreen();
+  cout << "Access Denied!" << endl;
+  GUI::pause();
 }
 
 string *GUI::getFileName(const char *_param) {
-	char name[100];
+  char name[100];
   GUI::clearScreen();
   cout << "Insert file name to " << _param << endl;
   cin.getline(name, sizeof(name));
@@ -24,7 +24,7 @@ string *GUI::getFileName(const char *_param) {
 }
 
 string *GUI::getUserName(const char *_param) {
-	char name[100];
+  char name[100];
   GUI::clearScreen();
   cout << "Insert user name to " << _param << endl;
   cin.getline(name, sizeof(name));
@@ -33,9 +33,9 @@ string *GUI::getUserName(const char *_param) {
 
 string *GUI::getUserPswd() {
   char *password; // char* cuz getpass(string) returns char*
-	password  = new char[100];
-	GUI::clearScreen();
-	password = getpass("Insert Password\n"); // get the password without echoing in terminal
+  password  = new char[100];
+  GUI::clearScreen();
+  password = getpass("Insert Password\n"); // get the password without echoing in terminal
   return new string(password);
 }
 
@@ -90,7 +90,6 @@ string *GUI::getUserLogin() {
   GUI::clearScreen();
   cout << "User name:" << endl;
   cin.getline(user, sizeof(user));
-  
   return new string(user);
 }
 
@@ -182,5 +181,11 @@ void GUI::listLog(time_t *time, string *owner, string *log) {
   cout << asctime(localtime(time));
   cout << owner->c_str() << endl << endl;
   cout << log->c_str() << endl << endl;
+}
+
+void GUI::showLogged(string *_user) {
+  GUI::clearScreen();
+  cout << "Now you're logged as " + *_user << endl;
+  GUI::pause();
 }
 

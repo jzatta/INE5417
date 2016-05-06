@@ -13,7 +13,7 @@ SuperUser::SuperUser(string *_name, string *_pswd) : User(_name, _pswd) {}
 SuperUser::SuperUser() : User() {}
 
 // common users doesn't have the ability to add another user
-void SuperUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _super) {
+string *SuperUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _super) {
   User *usr;
   if (_super) {
     usr = new SuperUser(_name, _pswd);
@@ -22,6 +22,7 @@ void SuperUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _sup
   }
   // need to check if exists the user
   uM->create(usr);
+  return new string("created");
 }
 
 // common users doesn't have the ability to remove another user

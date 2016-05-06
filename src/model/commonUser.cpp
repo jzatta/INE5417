@@ -13,8 +13,9 @@ CommonUser::CommonUser(string *_name, string *_pswd) : User(_name, _pswd) {}
 CommonUser::CommonUser() : User() {}
 
 // common users doesn't have the ability to add another user
-void CommonUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _super) {
+string *CommonUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _super) {
   // in control, verify instance type and throw vision exception.
+  return new string("access denied");
 }
 // common users doesn't have the ability to remove another user
 string *CommonUser::removeUser(UserManager *uM, string *_username) {

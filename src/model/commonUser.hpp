@@ -20,7 +20,7 @@ public:
   
 	virtual string *removeUser(UserManager *uM, string *_username);
 	virtual string *removeFile(FileManager *fM, string *_filename);
-  	virtual void addUser(UserManager *uM, string *_name, string *_pswd, bool _super);
+  	virtual string *addUser(UserManager *uM, string *_name, string *_pswd, bool _super);
 	virtual void addFile(FileManager *fM, string *_filename);
 	virtual list<string*> *listFile(FileManager *fM);
 };
