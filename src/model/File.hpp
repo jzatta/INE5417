@@ -13,6 +13,7 @@ using namespace std;
 class File {
 private:
   string *fileName;
+  int counter;
   list<Log*> *logs;
 
 public:

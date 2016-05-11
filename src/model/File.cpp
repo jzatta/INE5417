@@ -11,11 +11,13 @@ using namespace std;
 File::File(const char *_name) {
   this->fileName = new string(_name);
   this->logs = new list<Log*>();
+  this->counter = 0;
 }
 
 File::File(string *_name) {
   this->fileName = _name;
   this->logs = new list<Log*>();
+  this->counter = 0;
 }
 
 string *File::getName() {
@@ -28,6 +30,11 @@ void File::setName(string *_name) {
 }
 
 void File::modify() {
+  string cpyCommand, cpy("cp -p ");
+  char tmp[10];
+  sprintf(tmp, "%d", (this->counter)++);
+  cpyCommand = cpy + *(this->fileName) + " ." + *(this->fileName) + "." + tmp;
+  system(cpyCommand.c_str());
   string nanoCommand, nano("nano ");
   nanoCommand = nano + *(this->fileName);
   system(nanoCommand.c_str());
