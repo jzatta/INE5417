@@ -40,9 +40,9 @@ void File::modify() {
   system(nanoCommand.c_str());
 }
 
-void File::restore(User *u, int version) {
+int File::restore(User *u, int version) {
   if (version < 0 || version >= this->counter) {
-    return;
+    return -1;
   }
   string cpyCommand, cpy("cp -p ");
   char tmp[30];
@@ -54,6 +54,7 @@ void File::restore(User *u, int version) {
   system(cpyCommand.c_str());
   sprintf(tmp, "Version %d restored", version);
   this->addLog(new Log(tmp, u));
+  return 0;
 }
 
 void File::addLog(Log *log) {

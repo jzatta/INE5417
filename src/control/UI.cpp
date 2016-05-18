@@ -139,8 +139,9 @@ void UI::run() {
         }
         int ver;
         ver = GUI::getVersion();
-      
-        file->restore(this->logged, ver);
+        if (file->restore(this->logged, ver)) {
+          GUI::dontExist();
+        }
         continue;
       
       default:

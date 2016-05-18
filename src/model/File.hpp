@@ -27,7 +27,7 @@ public:
   
   void modify();
   
-  void restore(User *u, int version);
+  int restore(User *u, int version);
 
   void addLog(Log *log);
 
