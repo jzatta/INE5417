@@ -20,9 +20,10 @@ Log::Log(string *_change, User *_owner) {
   this->owner = _owner->getName();
   this->date = (time_t *)malloc(sizeof(time_t));
   time(this->date);
+  this->sequence = sequence;
 }
 
-void *Log::saveLog(string *_logname) {
+void Log::saveLog(string *_logname) {
   ofstream myFile;
   myFile.open(_logname->c_str());
   myFile << this->getOwner();
@@ -41,6 +42,14 @@ string *Log::getChange() {
 
 string *Log::getOwner() {
   return this->owner;
+}
+
+int Log::getSequence() {
+  return this->sequence;
+}
+
+void Log::setSequence(int _sequence) {
+  this->sequence = _sequence;
 }
 
 void Log::setChange(string *_change) {

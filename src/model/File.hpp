@@ -26,6 +26,8 @@ public:
   void setName(string *_name);
   
   void modify();
+  
+  void restore(User *u, int version);
 
   void addLog(Log *log);
 

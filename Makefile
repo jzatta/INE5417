@@ -14,7 +14,6 @@ all: ${OBJ}
 	./${EXEC}
 	${RM}	${TRASH}
 
-
 %.o: src/control/%.cpp Makefile
 	${CC} ${CFLAGS1} -o $@ $<
 

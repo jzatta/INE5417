@@ -92,9 +92,9 @@ void UI::run() {
         continue;
       
       case 7: // list logs
-        uName = GUI::getFileName("list logs");
-        file = fM->getFile(uName);
-        delete uName;
+        fName = GUI::getFileName("list logs");
+        file = fM->getFile(fName);
+        delete fName;
       
         if (file == NULL) {
           GUI::dontExist();
@@ -106,7 +106,7 @@ void UI::run() {
         itLog = listLogs->begin();
         GUI::clearScreen();
         for (; itLog != listLogs->end(); ++itLog) {
-          GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange());
+          GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), -1);
         }
         GUI::pause();
         continue;
@@ -119,6 +119,29 @@ void UI::run() {
       case 9: // exit
         this->logged = NULL;
         break;
+      
+      case 10: // restore file
+        fName = GUI::getFileName("restore");
+        file = fM->getFile(fName);
+        delete fName;
+      
+        if (file == NULL) {
+          GUI::dontExist();
+          continue;
+        }
+        
+        listLogs = file->listLogs();
+      
+        itLog = listLogs->begin();
+        GUI::clearScreen();
+        for (; itLog != listLogs->end(); ++itLog) {
+          GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), (*itLog)->getSequence());
+        }
+        int ver;
+        ver = GUI::getVersion();
+      
+        file->restore(this->logged, ver);
+        continue;
       
       default:
         continue;

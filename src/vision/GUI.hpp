@@ -26,6 +26,7 @@ public:
 	static string *getUserPswd(); // get the user password from the keyboard
 	static bool getUserResp(); // ask if user is a common user or a supper user
  	static string *getChanges();
+ 	static int getVersion();
  	
  	static string *getUserLogin();
  	static string *getPswdLogin();
@@ -35,6 +36,6 @@ public:
  	static int mainScreen();
  	static void showLogged(string *_user);
  	static void listStrings(list<string*> *listOfStrings);
- 	static void listLog(time_t *time, string *owner, string *log);
+ 	static void listLog(time_t *time, string *owner, string *log, int seq);
 };
 #endif

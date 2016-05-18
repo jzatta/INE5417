@@ -12,21 +12,24 @@ using namespace std;
 
 class Log {
 private:
-  	string *change;
-  	string *owner;
-	time_t *date;
-
+  string *change;
+  string *owner;
+  time_t *date;
+  int sequence;
+  
 public:
-	Log(const char *change, User *owner);
-	Log(string *change, User *owner);
-	void *saveLog(string *_logname);
-	/*
-		getters and setters
-	*/
-	time_t *getTime();
-	string *getChange();
+  Log(const char *change, User *owner);
+  Log(string *change, User *owner);
+  void saveLog(string *_logname);
+  /*
+   *    getters and setters
+   */
+  time_t *getTime();
+  string *getChange();
   string *getOwner();
-	void setChange(string *_chenge);
+  int getSequence();
+  void setSequence(int _sequence);
+  void setChange(string *_chenge);
 };
 
 #endif

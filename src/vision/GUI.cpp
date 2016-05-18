@@ -109,6 +109,26 @@ string *GUI::getChanges() {
   return new string(change);
 }
 
+int GUI::getVersion() {
+  char name[100]; int ret;
+  cout << "Insert version file to restore:" << endl;
+  cin.getline(name, sizeof(name));
+  ret = atoi(name);
+  if (ret == 0) {
+    int i;
+    for (i = 0; i < 100; i++) {
+      if (name[i] == '0') {
+        continue;
+      }
+      else if (name[i] == '\0') {
+        break;
+      }
+      else return -1;
+    }
+  }
+  return ret;
+}
+
 void GUI::clearScreen() {
   cout << "\033[H\033[2J" << endl;
   return;
@@ -128,6 +148,7 @@ int GUI::mainScreen() {
   cout << "add file" << endl;
   cout << "remove file" << endl;
   cout << "modify file" << endl;
+  cout << "restore file" << endl;
   cout << "list files" << endl;
   cout << "list logs" << endl;
   cout << "change user" << endl;
@@ -149,6 +170,9 @@ int GUI::mainScreen() {
   }
   else if (!strcmp(command, "modify file")) {
     return 5;
+  }
+  else if (!strcmp(command, "restore file")) {
+    return 10;
   }
   else if (!strcmp(command, "list files")) {
     return 6;
@@ -177,7 +201,10 @@ void GUI::listStrings(list<string*> *listOfStrings) {
   GUI::pause();
 }
 
-void GUI::listLog(time_t *time, string *owner, string *log) {
+void GUI::listLog(time_t *time, string *owner, string *log, int seq) {
+  if (seq >= 0) {
+    cout << "Version: " << seq << endl;
+  }
   cout << asctime(localtime(time));
   cout << owner->c_str() << endl << endl;
   cout << log->c_str() << endl << endl;
