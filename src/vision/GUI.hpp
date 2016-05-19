@@ -32,6 +32,9 @@ public:
  	static string *getPswdLogin();
  	static void clearScreen();
  	static void pause();
+
+ 	static void getDiff(string _choosen, string _previous);
+ 	static int getVersionDiff();
  	
  	static int mainScreen();
  	static void showLogged(string *_user);

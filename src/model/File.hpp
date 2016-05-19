@@ -24,6 +24,10 @@ public:
   string *getName();
 
   void setName(string *_name);
+
+  string *getPreviousLog(int version);
+
+  string *getLog(int version);
   
   void modify();
   
