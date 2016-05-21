@@ -162,9 +162,10 @@ void UI::login() {
     if (this->logged == NULL) {
       cout << "User name or password doesnt match" << endl; // <<--check
       GUI::pause();
+    } else {
+      GUI::showLogged(sUser);
     }
+    delete sUser;
+    delete sPasswd;
   } while (this->logged == NULL);
-  GUI::showLogged(sUser);
-  delete sUser;
-  delete sPasswd;
 }
