@@ -144,6 +144,35 @@ void UI::run() {
         }
         continue;
       
+      case 11: // check diff
+        fName = GUI::getFileName("to check differences between the previous one");
+        file = fM->getFile(fName);
+        delete fName;
+
+        if(file == NULL) {
+          GUI::dontExist();
+          continue;
+        }
+
+        int _ver;
+
+        listLogs = file->listLogs();
+
+        itLog = listLogs->begin();
+        GUI::clearScreen();
+        for(; itLog != listLogs->end(); ++itLog) {
+          GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), (*itLog)->getSequence());
+        }
+
+        _ver = GUI::getVersionDiff();
+        if(_ver <= 1) {
+          GUI::dontExist();
+          continue;
+        }
+
+        GUI::getDiff(*(file->getLog(_ver)), *(file->getPreviousLog(_ver)));
+
+
       default:
         continue;
     }

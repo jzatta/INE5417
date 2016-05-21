@@ -129,6 +129,18 @@ int GUI::getVersion() {
   return ret;
 }
 
+int GUI::getVersionDiff() {
+  char name[100]; 
+  int ret;
+  cout << "Insert version file to check differences:" << endl;
+  cin.getline(name, sizeof(name));
+  ret = atoi(name);
+  if(ret <= 0) {
+    return -1;
+  }
+  return ret;
+}
+
 void GUI::clearScreen() {
   cout << "\033[H\033[2J" << endl;
   return;
@@ -148,6 +160,7 @@ int GUI::mainScreen() {
   cout << "add file" << endl;
   cout << "remove file" << endl;
   cout << "modify file" << endl;
+  cout << "check diff" << endl;
   cout << "restore file" << endl;
   cout << "list files" << endl;
   cout << "list logs" << endl;
@@ -173,6 +186,9 @@ int GUI::mainScreen() {
   }
   else if (!strcmp(command, "restore file")) {
     return 10;
+  }
+  else if (!strcmp(command, "check diff")) {
+    return 11;
   }
   else if (!strcmp(command, "list files")) {
     return 6;
@@ -216,3 +232,13 @@ void GUI::showLogged(string *_user) {
   GUI::pause();
 }
 
+void GUI::getDiff(string _choosen, string _previous) {
+  GUI::clearScreen();
+  string _diff;
+  _diff += "diff ";
+  _diff += _choosen;
+  _diff += " ";
+  _diff += _previous;
+  system(_diff.c_str());
+  GUI::pause();
+}
