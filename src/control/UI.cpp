@@ -171,6 +171,7 @@ void UI::run() {
         }
 
         GUI::getDiff(*(file->getLog(_ver)), *(file->getPreviousLog(_ver)));
+        continue;
 
 
       default:
