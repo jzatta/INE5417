@@ -19,9 +19,13 @@ public:
   FileManager(list<File*> *_files);
   bool exclude(string *fileName);
   void create(void *file);
-  File *getFile(string *fileName);
   list<File*> *getListFiles();
+  File *getFile(string *fileName);
   virtual void save();
+  
+  list<Log*> *listLogs(string *fileName);
+  int restore(string *fileName, User *u, int version);
+  string *fileLogVersion(string *fileName, int version);
 };
 
 #endif

@@ -25,9 +25,7 @@ public:
 
   void setName(string *_name);
 
-  string *getPreviousLog(int version);
-
-  string *getLog(int version);
+  string *fileLogVersion(int version);
   
   void modify();
   

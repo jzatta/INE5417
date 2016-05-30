@@ -23,6 +23,9 @@ public:
 
   void run();
   void login();
+  
+  void restore();
+  void diff();
 };
 
 #endif

@@ -57,7 +57,7 @@ int File::restore(User *u, int version) {
   return 0;
 }
 
-string *File::getLog(int version) {
+string *File::fileLogVersion(int version) {
   if(version < 0 || version > this->counter) {
     return NULL;
   }
@@ -66,20 +66,6 @@ string *File::getLog(int version) {
   if(version == this->counter) {
     return this->fileName;   
   }
-  sprintf(tmp, ".%d ", version);
-  *_logVersion += ".";
-  *_logVersion += *(this->fileName);
-  *_logVersion += tmp;
-  return _logVersion;
-}
-
-string *File::getPreviousLog(int version) {
-  version -= 1;
-  if(version < 0 || version >= this->counter) {
-    return NULL;
-  }
-  string *_logVersion = new string();
-  char tmp[30];
   sprintf(tmp, ".%d ", version);
   *_logVersion += ".";
   *_logVersion += *(this->fileName);

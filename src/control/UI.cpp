@@ -25,7 +25,7 @@ void UI::run() {
     File *file;
     list<string*> *listOfFiles;
     list<Log*> *listLogs;
-    std::list<Log*>::iterator itLog;  
+    std::list<Log*>::iterator itLog;
   
     switch (GUI::mainScreen()) {
       case 1: // add user
@@ -121,56 +121,11 @@ void UI::run() {
         break;
       
       case 10: // restore file
-        fName = GUI::getFileName("restore");
-        file = fM->getFile(fName);
-        delete fName;
-      
-        if (file == NULL) {
-          GUI::dontExist();
-          continue;
-        }
-        
-        listLogs = file->listLogs();
-      
-        itLog = listLogs->begin();
-        GUI::clearScreen();
-        for (; itLog != listLogs->end(); ++itLog) {
-          GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), (*itLog)->getSequence());
-        }
-        int ver;
-        ver = GUI::getVersion();
-        if (file->restore(this->logged, ver)) {
-          GUI::dontExist();
-        }
+        this->restore();
         continue;
       
       case 11: // check diff
-        fName = GUI::getFileName("to check differences between the previous one");
-        file = fM->getFile(fName);
-        delete fName;
-
-        if(file == NULL) {
-          GUI::dontExist();
-          continue;
-        }
-
-        int _ver;
-
-        listLogs = file->listLogs();
-
-        itLog = listLogs->begin();
-        GUI::clearScreen();
-        for(; itLog != listLogs->end(); ++itLog) {
-          GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), (*itLog)->getSequence());
-        }
-
-        _ver = GUI::getVersionDiff();
-        if(_ver <= 1) {
-          GUI::dontExist();
-          continue;
-        }
-
-        GUI::getDiff(*(file->getLog(_ver)), *(file->getPreviousLog(_ver)));
+        this->diff();
         continue;
 
 
@@ -198,4 +153,62 @@ void UI::login() {
     delete sUser;
     delete sPasswd;
   } while (this->logged == NULL);
+}
+
+void UI::restore() {
+  string *fName;
+  list<Log*> *listLogs;
+  std::list<Log*>::iterator itLog;
+  
+  fName = GUI::getFileName("restore");
+  listLogs = fM->listLogs(fName);
+
+  if (listLogs == NULL) {
+    GUI::dontExist();
+    return;
+  }
+
+  GUI::clearScreen();
+  itLog = listLogs->begin();
+  for (; itLog != listLogs->end(); ++itLog) {
+    GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), (*itLog)->getSequence());
+  }
+  
+  int ver;
+  ver = GUI::getVersion();
+  if (fM->restore(fName, this->logged, ver)) {
+    GUI::dontExist();
+  }
+  delete fName;
+}
+
+void UI::diff() {
+  string *fName;
+  list<Log*> *listLogs;
+  std::list<Log*>::iterator itLog;
+  
+  fName = GUI::getFileName("to check differences between the previous one");
+  listLogs = fM->listLogs(fName);
+
+  if(listLogs == NULL) {
+    GUI::dontExist();
+    return;
+  }
+  int _ver;
+  itLog = listLogs->begin();
+  GUI::clearScreen();
+  for(; itLog != listLogs->end(); ++itLog) {
+    GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), (*itLog)->getSequence());
+  }
+  
+  _ver = GUI::getVersionDiff();
+  if(_ver <= 1) {
+    GUI::dontExist();
+    return;
+  }
+  string *f1Name, *f2Name;
+  f1Name = fM->fileLogVersion(fName, _ver);
+  f2Name = fM->fileLogVersion(fName, _ver-1);
+  GUI::getDiff(*f1Name, *f2Name);
+  delete fName;
 }

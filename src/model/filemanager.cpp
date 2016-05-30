@@ -45,3 +45,28 @@ list<File*> *FileManager::getListFiles() {
 void FileManager::save() {
   // must save in a file ".files.q"
 }
+
+list<Log*> *FileManager::listLogs(string *fileName) {
+  File *file;
+  file = this->getFile(fileName);
+  if (file == NULL)
+    return NULL;
+  return file->listLogs();
+}
+
+int FileManager::restore(string *fileName, User *u, int version) {
+  File *file;
+  file = this->getFile(fileName);
+  if (file == NULL)
+    return NULL;
+  return file->restore(u, version);
+}
+
+
+string *FileManager::fileLogVersion(string *fileName, int version) {
+  File *file;
+  file = this->getFile(fileName);
+  if (file == NULL)
+    return NULL;
+  return file->fileLogVersion(version);
+}
