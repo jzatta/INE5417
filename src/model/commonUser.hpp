@@ -1,7 +1,7 @@
 #ifndef _COMMON_USER_
 #define _COMMON_USER_
 
-class Commonuser;
+class CommonUser;
 
 #include <iostream>
 #include <string>
