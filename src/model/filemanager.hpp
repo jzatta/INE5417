@@ -23,7 +23,7 @@ public:
   File *getFile(string *fileName);
   virtual void save();
   
-  list<Log*> *listLogs(string *fileName);
+  list<string*> *listLogs(string *fileName);
   int restore(string *fileName, User *u, int version);
   string *fileLogVersion(string *fileName, int version);
 };

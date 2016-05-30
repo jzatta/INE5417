@@ -46,7 +46,7 @@ void FileManager::save() {
   // must save in a file ".files.q"
 }
 
-list<Log*> *FileManager::listLogs(string *fileName) {
+list<string*> *FileManager::listLogs(string *fileName) {
   File *file;
   file = this->getFile(fileName);
   if (file == NULL)
@@ -58,7 +58,7 @@ int FileManager::restore(string *fileName, User *u, int version) {
   File *file;
   file = this->getFile(fileName);
   if (file == NULL)
-    return NULL;
+    return -1;
   return file->restore(u, version);
 }
 

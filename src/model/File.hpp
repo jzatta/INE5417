@@ -33,7 +33,7 @@ public:
 
   void addLog(Log *log);
 
-  list<Log*> *listLogs();
+  list<string*> *listLogs();
   
   void save();
 };

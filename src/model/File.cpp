@@ -78,7 +78,32 @@ void File::addLog(Log *log) {
   this->logs->push_back(log);
 }
 
-list<Log*> *File::listLogs() {
+list<string*> *File::listLogs() {
   // maybe return a list of strings
+#if 1
+  time_t *time;
+  string *owner;
+  string *log;
+  int seq;
+  std::list<string*> *logsString = new std::list<string*>();
+  std::list<Log*>::iterator itLog;
+  string tmpStr = "Version: ";
+  itLog = this->logs->begin();
+  for (; itLog != this->logs->end(); ++itLog) {
+    seq = (*itLog)->getSequence();
+    time = (*itLog)->getTime();
+    owner = (*itLog)->getOwner();
+    log = (*itLog)->getChange();
+    if (seq >= 0) {
+      tmpStr = tmpStr + to_string(seq) + "\n";
+    }
+    tmpStr = tmpStr + asctime(localtime(time));
+    tmpStr = tmpStr + *owner + "\n\n";
+    tmpStr = tmpStr + *log + "\n\n";
+    logsString->push_back(new string(tmpStr));
+  }
+  return logsString;
+#else
   return logs;
+#endif
 }

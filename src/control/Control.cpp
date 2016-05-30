@@ -24,8 +24,8 @@ void Control::run() {
     string *ret;
     File *file;
     list<string*> *listOfFiles;
-    list<Log*> *listLogs;
-    std::list<Log*>::iterator itLog;
+    list<string*> *listLogs;
+    std::list<string*>::iterator itLog;
   
     switch (GUI::mainScreen()) {
       case 1: // add user
@@ -104,9 +104,9 @@ void Control::run() {
         listLogs = file->listLogs();
       
         itLog = listLogs->begin();
-        GUI::clearScreen();
         for (; itLog != listLogs->end(); ++itLog) {
-          GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), -1);
+          GUI::listLog(*itLog);
+          delete *itLog;
         }
         GUI::pause();
         continue;
@@ -157,8 +157,8 @@ void Control::login() {
 
 void Control::restore() {
   string *fName;
-  list<Log*> *listLogs;
-  std::list<Log*>::iterator itLog;
+  list<string*> *listLogs;
+  std::list<string*>::iterator itLog;
   
   fName = GUI::getFileName("restore");
   listLogs = fM->listLogs(fName);
@@ -171,11 +171,12 @@ void Control::restore() {
   GUI::clearScreen();
   itLog = listLogs->begin();
   for (; itLog != listLogs->end(); ++itLog) {
-    GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), (*itLog)->getSequence());
+    GUI::listLog(*itLog);
+    delete *itLog;
   }
   
   int ver;
-  ver = GControl::getVersion();
+  ver = GUI::getVersion();
   if (fM->restore(fName, this->logged, ver)) {
     GUI::dontExist();
   }
@@ -184,8 +185,8 @@ void Control::restore() {
 
 void Control::diff() {
   string *fName;
-  list<Log*> *listLogs;
-  std::list<Log*>::iterator itLog;
+  list<string*> *listLogs;
+  std::list<string*>::iterator itLog;
   
   fName = GUI::getFileName("to check differences between the previous one");
   listLogs = fM->listLogs(fName);
@@ -195,10 +196,11 @@ void Control::diff() {
     return;
   }
   int _ver;
-  itLog = listLogs->begin();
   GUI::clearScreen();
-  for(; itLog != listLogs->end(); ++itLog) {
-    GUI::listLog((*itLog)->getTime(), (*itLog)->getOwner(), (*itLog)->getChange(), (*itLog)->getSequence());
+  itLog = listLogs->begin();
+  for (; itLog != listLogs->end(); ++itLog) {
+    GUI::listLog(*itLog);
+    delete *itLog;
   }
   
   _ver = GUI::getVersionDiff();

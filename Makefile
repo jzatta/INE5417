@@ -6,7 +6,7 @@ EXEC = main
 TRASH = *.o main
 
 OBJ=main.o user.o superUser.o usermanager.o commonUser.o manager.o
-OBJ+=filemanager.o File.o Log.o GUI.o UI.o
+OBJ+=filemanager.o File.o Log.o GUI.o Control.o
 
 .PHONY: all
 all: ${OBJ}

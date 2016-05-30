@@ -40,5 +40,6 @@ public:
  	static void showLogged(string *_user);
  	static void listStrings(list<string*> *listOfStrings);
  	static void listLog(time_t *time, string *owner, string *log, int seq);
+ 	static void listLog(string *log);
 };
 #endif

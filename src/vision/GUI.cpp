@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <string.h>
 #include "GUI.hpp"
-#include "UI.hpp"
 
 using namespace std;
 
@@ -224,6 +223,10 @@ void GUI::listLog(time_t *time, string *owner, string *log, int seq) {
   cout << asctime(localtime(time));
   cout << owner->c_str() << endl << endl;
   cout << log->c_str() << endl << endl;
+}
+
+void GUI::listLog(string *log) {
+  cout << log->c_str();
 }
 
 void GUI::showLogged(string *_user) {
