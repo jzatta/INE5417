@@ -9,7 +9,6 @@ class SuperUser;
 #include "usermanager.hpp"
 #include "filemanager.hpp"
 #include "commonUser.hpp"
-#include "UI.hpp"
 
 using namespace std;
 
@@ -17,11 +16,11 @@ class SuperUser : public User {
 private:
   // ?
 public:
-  	SuperUser();
-  	SuperUser(const char *_name, const char *_pswd);
-  	SuperUser(string *_name, string *_pswd);
+  SuperUser();
+  SuperUser(const char *_name, const char *_pswd);
+  SuperUser(string *_name, string *_pswd);
 	virtual string *removeUser(UserManager *uM, string *_username) ;
-  	virtual string *addUser(UserManager *uM, string *_name, string *_pswd, bool _super);
+  virtual string *addUser(UserManager *uM, string *_name, string *_pswd, bool _super);
 	virtual string *removeFile(FileManager *fM, string *_filename) ;
 	virtual void addFile(FileManager *fM, string *_filename)    ;
 	virtual list<string*> *listFile(FileManager *fM)   ;

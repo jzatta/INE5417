@@ -1,10 +1,10 @@
 
-#include "UI.hpp"
+#include "Control.hpp"
 
 using namespace std;
 
 int main() {
-	UI ui;
-	ui.run();
+	Control ctrl;
+	ctrl.run();
 	return 0;
 }

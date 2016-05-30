@@ -1,9 +1,9 @@
-#ifndef _UI_
-#define _UI_
+#ifndef _Control_
+#define _Control_
 
 #pragma once
 
-class UI;
+class Control;
 
 #include <iostream>
 #include <string>
@@ -13,13 +13,13 @@ class UI;
 
 using namespace std;
 
-class UI {
+class Control {
 private:
   UserManager *uM;
   FileManager *fM;
   User *logged;
 public:
-  UI();
+  Control();
 
   void run();
   void login();

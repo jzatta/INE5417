@@ -1,18 +1,18 @@
 
-#include "UI.hpp"
+#include "Control.hpp"
 
 #include <string.h>
 #include <time.h>
 #include "GUI.hpp"
 
-UI::UI() {
+Control::Control() {
 // must initialize uM and fM reading from BD/conf files
   this->uM = new UserManager();
   this->fM = new FileManager();
   this->logged = NULL;
 }
 
-void UI::run() {
+void Control::run() {
   while (this->logged == NULL) {
     this->login();
   }
@@ -135,7 +135,7 @@ void UI::run() {
   }
 }
 
-void UI::login() {
+void Control::login() {
   string *sUser, *sPasswd;
 
   do {
@@ -155,7 +155,7 @@ void UI::login() {
   } while (this->logged == NULL);
 }
 
-void UI::restore() {
+void Control::restore() {
   string *fName;
   list<Log*> *listLogs;
   std::list<Log*>::iterator itLog;
@@ -175,14 +175,14 @@ void UI::restore() {
   }
   
   int ver;
-  ver = GUI::getVersion();
+  ver = GControl::getVersion();
   if (fM->restore(fName, this->logged, ver)) {
     GUI::dontExist();
   }
   delete fName;
 }
 
-void UI::diff() {
+void Control::diff() {
   string *fName;
   list<Log*> *listLogs;
   std::list<Log*>::iterator itLog;
