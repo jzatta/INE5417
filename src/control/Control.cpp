@@ -108,6 +108,8 @@ void Control::run() {
           GUI::listLog(*itLog);
           delete *itLog;
         }
+        delete listLogs;
+        
         GUI::pause();
         continue;
 
@@ -174,6 +176,7 @@ void Control::restore() {
     GUI::listLog(*itLog);
     delete *itLog;
   }
+  delete listLogs;
   
   int ver;
   ver = GUI::getVersion();
@@ -202,6 +205,7 @@ void Control::diff() {
     GUI::listLog(*itLog);
     delete *itLog;
   }
+  delete listLogs;
   
   _ver = GUI::getVersionDiff();
   if(_ver <= 1) {
