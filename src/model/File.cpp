@@ -87,9 +87,9 @@ list<string*> *File::listLogs() {
   int seq;
   std::list<string*> *logsString = new std::list<string*>();
   std::list<Log*>::iterator itLog;
-  string tmpStr = "Version: ";
   itLog = this->logs->begin();
   for (; itLog != this->logs->end(); ++itLog) {
+    string tmpStr = "Version: ";
     seq = (*itLog)->getSequence();
     time = (*itLog)->getTime();
     owner = (*itLog)->getOwner();
