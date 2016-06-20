@@ -26,8 +26,8 @@ File::File(string *_name, int _counter) {
   this->counter = _counter;
 }
 
-File::File(const char *_nome, int counter) {
-  this->fileName = _name;
+File::File(const char *_name, int counter) {
+  this->fileName = new string(_name);
   this->logs = new list<Log*>();
   this->counter = 0;
 }
