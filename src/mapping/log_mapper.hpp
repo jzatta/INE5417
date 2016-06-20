@@ -14,9 +14,9 @@ using namespace std;
 using namespace mysqlpp;
 
 class LogMapper {
-  public:
-
   private:
+
+  public:
     LogMapper();
     list<Log> loadLogs(File *_file);
     void saveLog(Log *_log);

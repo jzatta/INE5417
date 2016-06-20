@@ -12,9 +12,9 @@ using namespace std;
 using namespace mysqlpp;
 
 class FileMapper {
-  public:
-
   private:
+
+  public:
     FileMapper();
     list<File> loadFiles();
     void saveFile(File *_file);

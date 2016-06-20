@@ -20,6 +20,10 @@ public:
   File(const char *_name);
   
   File(string *_name);
+
+  File(string *_name, int counter);
+
+  File(const char *_name, int counter);
   
   string *getName();
 

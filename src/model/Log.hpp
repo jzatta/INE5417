@@ -20,6 +20,8 @@ private:
 public:
   Log(const char *change, User *owner);
   Log(string *change, User *owner);
+  // created to load logs from db
+  Log(string *change, string *owner, time_t *date, int sequence);
   void saveLog(string *_logname);
   /*
    *    getters and setters

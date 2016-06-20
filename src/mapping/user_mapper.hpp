@@ -12,9 +12,9 @@ using namespace std;
 using namespace mysqlpp;
 
 class UserMapper {
-  public:
-
   private:
+
+  public:
     UserMapper();
     list<User> loadUsers();
     void saveUser(User *_user);

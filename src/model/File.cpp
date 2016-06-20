@@ -20,6 +20,18 @@ File::File(string *_name) {
   this->counter = 0;
 }
 
+File::File(string *_name, int _counter) {
+  this->fileName = _name;
+  this->logs = new list<Log*>();
+  this->counter = _counter;
+}
+
+File::File(const char *_nome, int counter) {
+  this->fileName = _name;
+  this->logs = new list<Log*>();
+  this->counter = 0;
+}
+
 string *File::getName() {
   return fileName;
 }
