@@ -19,7 +19,7 @@ class UserMapper {
   public:
     UserMapper();
     UserMapper(Connect _conn);
-    list<User*> loadUsers();
+    list<User*> *loadUsers();
     void saveUser(User *_user);
 };
 

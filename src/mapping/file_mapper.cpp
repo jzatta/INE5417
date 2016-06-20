@@ -13,10 +13,10 @@ FileMapper::FileMapper(Connect _conn) {
   this->conn = _conn->getConnection();
 }
 
-list<File> FileMapper::loadFiles() {
+list<File> *FileMapper::loadFiles() {
   string *fileName;
   int counter;
-  list<File*> files = new list<File*>();
+  list<File*> *files = new list<File*>();
   try {
     Query query = this->conn.query();
 

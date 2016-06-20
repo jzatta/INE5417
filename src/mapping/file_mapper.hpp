@@ -19,7 +19,7 @@ class FileMapper {
   public:
     FileMapper();
     FileMapper(Connect _conn);
-    list<File> loadFiles();
+    list<File> *loadFiles();
     void saveFile(File *_file);
 };
 
