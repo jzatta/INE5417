@@ -36,6 +36,10 @@ string *File::getName() {
   return fileName;
 }
 
+int File::getCounter() {
+  return counter;
+}
+
 void File::setName(string *_name) {
   // need to move file inside here, not necessary
   return;

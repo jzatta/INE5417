@@ -27,6 +27,8 @@ public:
   
   string *getName();
 
+  int getCounter();
+
   void setName(string *_name);
 
   string *fileLogVersion(int version);
