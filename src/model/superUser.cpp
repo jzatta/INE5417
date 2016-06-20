@@ -36,6 +36,10 @@ string *SuperUser::removeUser(UserManager *uM, string *_username) {
   return verify;
 }
 
+bool SuperUser::isSuper() {
+  return true;
+}
+
 void SuperUser::addFile(FileManager *fM, string *_filename) {
   fM->create(new File(_filename));
 }

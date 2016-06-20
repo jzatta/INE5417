@@ -24,6 +24,7 @@ public:
 		getters and setters
 	*/
 	string *getName();
+  string *getPswd();
 	bool getAuth(string *_pswd);
 	void setName(string *_name);
 	void setPswd(string *_pswd);
@@ -31,7 +32,7 @@ public:
 	/*
 		non "getters and setters" stuff
 	*/
-
+  virtual bool isSuper() = 0;
 	virtual string *removeUser(UserManager *uM, string *_username) = 0;
 	virtual string *addUser(UserManager *uM, string *_name, string *_pswd, bool _super) = 0;
 	virtual string *removeFile(FileManager *fM, string *_filename) = 0;

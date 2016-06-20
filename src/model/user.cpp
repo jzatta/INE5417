@@ -24,6 +24,10 @@ string *User::getName() {
 	return this->name;
 }
 
+string *User::getPswd() {
+  return this->pswd;
+}
+
 bool User::getAuth(string *_pswd) {
 	if (this->pswd->compare(*_pswd)) {
     return false;

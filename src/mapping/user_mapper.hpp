@@ -7,16 +7,19 @@ class UserMapper;
 #include <stdlib.h>
 #include <mysql++.h>
 #include <"../model/user.hpp">
+#include <"connect.hpp">
 
 using namespace std;
 using namespace mysqlpp;
 
 class UserMapper {
   private:
+    Connection conn(false);
 
   public:
     UserMapper();
-    list<User> loadUsers();
+    UserMapper(Connect _conn);
+    list<User*> loadUsers();
     void saveUser(User *_user);
 };
 

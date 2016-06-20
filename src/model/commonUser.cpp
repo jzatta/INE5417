@@ -28,6 +28,10 @@ void CommonUser::addFile(FileManager *fM, string *_fname) {
   fM->create(new File(_fname));
 }
 
+bool CommonUser::isSuper() {
+  return false;
+}
+
 string *CommonUser::removeFile(FileManager *fM, string *_filename) {
   string *verify = new string("don't exist");
   if (fM->exclude(_filename)) {

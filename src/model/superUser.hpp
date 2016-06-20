@@ -19,6 +19,7 @@ public:
   SuperUser();
   SuperUser(const char *_name, const char *_pswd);
   SuperUser(string *_name, string *_pswd);
+  virtual bool isSuper();
 	virtual string *removeUser(UserManager *uM, string *_username) ;
   virtual string *addUser(UserManager *uM, string *_name, string *_pswd, bool _super);
 	virtual string *removeFile(FileManager *fM, string *_filename) ;

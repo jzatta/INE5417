@@ -12,8 +12,10 @@ using namespace mysqlpp;
 
 class File {
   private:
+    Connection conn(false);
 
   public:
+    Connection getConnection();
     Connect();
     void connect_db();
 };
