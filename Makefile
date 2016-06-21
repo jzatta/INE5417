@@ -1,7 +1,7 @@
 
 CC = g++
 
-LIBS:= -L/usr/local/lib -lmysqlpp -lmysqlclient
+LIBS:= -L/usr/lib -lmysqlpp -lmysqlclient -lmysqlcppconn
 INCDIR := src/model/ src/control/ src/vision/ src/mapping/ src/exceptions/ /usr/include/mysql /usr/include/mysql++
 CFLAGS1 = $(foreach inc,$(INCDIR),-I$(inc)) $(LIBS) -std=c++11 -Wabi -Wall -c
 RM = rm 
@@ -20,22 +20,26 @@ test:
 	@echo $(OBJS)
 
 $(EXEC): ${OBJS}
-	${CC} -o $@ $?
+	${CC} $? $(LIBS) -o $@
 
-%.o: src/control/%.cpp Makefile
+vpath %.cpp src/control/ src/model/ src/vision/ src/exceptions/ src/mapping/
+%.o: %.cpp Makefile
 	${CC} ${CFLAGS1} -o $@ $<
 
-%.o: src/model/%.cpp Makefile
-	${CC} ${CFLAGS1} -o $@ $<
-
-%.o: src/vision/%.cpp Makefile
-	${CC} ${CFLAGS1} -o $@ $<
-
-%.o: src/exceptions/%.cpp Makefile
-	${CC} ${CFLAGS1} -o $@ $<
-
-%.o: src/mapping/%.cpp Makefile
-	${CC} ${CFLAGS1} -o $@ $<
+# %.o: src/control/%.cpp Makefile
+# 	${CC} ${CFLAGS1} -o $@ $<
+# 
+# %.o: src/model/%.cpp Makefile
+# 	${CC} ${CFLAGS1} -o $@ $<
+# 
+# %.o: src/vision/%.cpp Makefile
+# 	${CC} ${CFLAGS1} -o $@ $<
+# 
+# %.o: src/exceptions/%.cpp Makefile
+# 	${CC} ${CFLAGS1} -o $@ $<
+# 
+# %.o: src/mapping/%.cpp Makefile
+# 	${CC} ${CFLAGS1} -o $@ $<
 
 .PHONY: clean
 clean:

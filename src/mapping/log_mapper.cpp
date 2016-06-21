@@ -1,56 +1,54 @@
+
+#include "log_mapper.hpp"
+
 #include <iostream>
 #include <stdlib.h>
 #include <mysql++.h>
 #include "connect.hpp"
 #include "Log.hpp"
 #include "File.hpp"
+#include "databaseException.hpp"
 
-LogMapper(Connect _conn) {
+LogMapper::LogMapper(Connect *_conn) {
   this->conn = _conn->getConnection();
 }
 
 // load logs list to each file
-list<Log> *LogMapper::loadLogs(File *_file) {
+list<Log*> *LogMapper::loadLogs(File *_file) {
   string *change;
   string *owner;
   time_t *date;
   int sequence;
 
-  *_name = _file->getName();
+  string *_name = _file->getName();
   list<Log*> *logs = new list<Log*>();
   try {
-    Query query = this->conn.query();
+    Query query = this->conn->query();
 
     query << "SELECT * FROM log WHERE file = "
           << *_name;
 
     StoreQueryResult ares = query.store();
     for(size_t i = 0; i < ares.num_rows(); i++) {
-      *change = ares[i]["change"];
-      *owner = ares[i]["owner"];
-      *date = ares[i]["date"];
-      sequence = ares[i][sequence];
-      logs->push_back(new Log(change, owner, date, sequence);
+      change = new string(ares[i]["change"]);
+      owner = new string(ares[i]["owner"]);
+      date = new long int(atol(ares[i]["date"]));
+      sequence = atoi(ares[i][sequence]);
+      logs->push_back(new Log(change, owner, date, sequence));
     }
   } catch(BadQuery er) {
-    
-    return DatabaseException::badQuery(er);
-
+    throw DatabaseException::badQuery(er);
   } catch(const BadConversion &er) {
-
-    return DatabaseException::badConversion(er);
-
+    throw DatabaseException::badConversion(er);
   } catch(const Exception &er) {
-
-    return DatabaseException::exception(er);
-
+    throw DatabaseException::exception(er);
   }
   return logs;
 }
 
 void LogMapper::saveLog(Log *_log, string *_fname) {
   try {
-    Query query = this->conn.query();
+    Query query = this->conn->query();
 
     query << "INSERT INTO log" << "VALUES ("
           << _log->getChange() << ", " 
@@ -61,17 +59,10 @@ void LogMapper::saveLog(Log *_log, string *_fname) {
     
     query.execute();
   } catch(BadQuery er) {
-
-    return DatabaseException::badQuery(er);
-
+    throw DatabaseException::badQuery(er);
   } catch(const BadConversion &er) {
-
-    return DatabaseException::badConversion(er);
-
+    throw DatabaseException::badConversion(er);
   } catch(const Exception &er) {
-
-    return DatabaseException::exception(er);
-
+    throw DatabaseException::exception(er);
   }
 }
-

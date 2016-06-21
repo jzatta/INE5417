@@ -16,12 +16,12 @@ using namespace mysqlpp;
 
 class LogMapper {
   private:
-    Connection conn(false);
+    Connection *conn;
 
   public:
     LogMapper();
-    LogMapper(Connect _conn);
-    list<Log> *loadLogs(File *_file);
+    LogMapper(Connect *_conn);
+    list<Log*> *loadLogs(File *_file);
     void saveLog(Log *_log, string *_fname);
 };
 

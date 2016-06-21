@@ -13,17 +13,14 @@ Connect::Connect() {
 
 void Connect::connect_db() {
   try {
-    this->conn.connect("root", "localhost", "root", "root");
-    Query query = conn.query();
+    this->conn->connect("root", "localhost", "root", "root");
+    Query query = conn->query();
   } catch (BadQuery er) {
-    return DatabaseException::badQuery(er);
-
+    throw DatabaseException::badQuery(er);
   } catch (const BadConversion &er) {
-    return DatabaseException::badConversion(er);
-
+    throw DatabaseException::badConversion(er);
   } catch (const Exception &er) {
-    return DatabaseException::exception(er);
-
+    throw DatabaseException::exception(er);
   }
 
   //return(EXIT_SUCCESS);

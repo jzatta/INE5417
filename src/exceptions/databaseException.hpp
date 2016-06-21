@@ -14,13 +14,12 @@ class DatabaseException {
   private:
 
   public:
-    DatabaseException();
     // catch connections or query errors
-    int badQuery(BadQuery er);
+    static int badQuery(BadQuery er);
     // catch bad conversions
-    int badConversion(const BadConversion &er);
+    static int badConversion(const BadConversion &er);
     // catch all other mysql++ exceptions
-    int exception(const Exception &er);
+    static int exception(const Exception &er);
 };
 
 #endif

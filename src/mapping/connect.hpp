@@ -10,12 +10,12 @@ class Connect;
 using namespace std;
 using namespace mysqlpp;
 
-class File {
+class Connect {
   private:
-    Connection conn(false);
+    Connection *conn;
 
   public:
-    Connection getConnection();
+    Connection *getConnection();
     Connect();
     void connect_db();
 };

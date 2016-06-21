@@ -1,44 +1,40 @@
+
+#include "file_mapper.hpp"
+
 #include <iostream>
-#include <stlib.h>
 #include <mysql++.h>
-#include "File.hpp"
-#include "databaseExceptions.hpp"
 #include <list>
+#include "File.hpp"
+#include "databaseException.hpp"
 #include "connect.hpp"
 
 using namespace std;
 using namespace mysqlpp;
 
-FileMapper::FileMapper(Connect _conn) {
+FileMapper::FileMapper(Connect *_conn) {
   this->conn = _conn->getConnection();
 }
 
-list<File> *FileMapper::loadFiles() {
+list<File*> *FileMapper::loadFiles() {
   string *fileName;
   int counter;
   list<File*> *files = new list<File*>();
   try {
-    Query query = this->conn.query();
+    Query query = this->conn->query();
 
     query << "SELECT * FROM file";
     StoreQueryResult ares = query.store();
     for(size_t i = 0; i < ares.num_rows(); i++) {
-      *fileName = ares[i]["name"];
-      counter = ares[i]["counter"];
+      fileName = new string(ares[i]["name"]);
+      counter = atoi(ares[i]["counter"]);
       files->push_back(new File(fileName, counter));
     }
   } catch(BadQuery er) {
-    
-    return DatabaseException::badQuery(er);
-
+    throw DatabaseException::badQuery(er);
   } catch(const BadConversion &er) {
-    
-    return DatabaseException::badConversion(er);
-
+    throw DatabaseException::badConversion(er);
   } catch(const Exception &er) {
-    
-    return DatabaseException::exception(er);
-
+    throw DatabaseException::exception(er);
   }
 
   return files;
@@ -46,23 +42,17 @@ list<File> *FileMapper::loadFiles() {
 
 void FileMapper::saveFile(File *_file) {
   try {
-    Query query = this->conn.query();
+    Query query = this->conn->query();
 
     query << "INSERT INTO file" << "VALUES ("
           << _file->getName() << ", " << _file->getCounter() 
           << "\"" << ");";
     query.execute();
   } catch(BadQuery er) {
-
-    return DatabaseException::badQuery(er);
-
+    throw DatabaseException::badQuery(er);
   } catch(const BadConversion &er) {
-
-    return DatabaseException::badConversion(er);
-
+    throw DatabaseException::badConversion(er);
   } catch(const Exception &er) {
-
-    return DatabaseException::exception(er);
-  
+    throw DatabaseException::exception(er);
   }
 }
