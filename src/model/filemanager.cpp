@@ -70,3 +70,10 @@ string *FileManager::fileLogVersion(string *fileName, int version) {
     return NULL;
   return file->fileLogVersion(version);
 }
+
+FileManager *FileManager::getFileManager(list<File*> *_files) {
+  if(this->fm == NULL) {
+    this->fm = new FileManager(_files);
+  }
+  return this->fm;
+}
