@@ -14,9 +14,12 @@ using namespace std;
 class FileManager : public Manager {
 private:
   list<File*> *files;
-public:
+  static FileManager *fm;
   FileManager();
   FileManager(list<File*> *_files);
+
+public:
+  static FileManager *getFileManager(list<File*> *_files);
   bool exclude(string *fileName);
   void create(void *file);
   list<File*> *getListFiles();
