@@ -1,10 +1,10 @@
 #include <iostream>
 #include <stlib.h>
 #include <mysql++.h>
-#include <"../model/File.hpp">
-#include <"../exceptions/databaseExceptions.hpp">
+#include "File.hpp"
+#include "databaseExceptions.hpp"
 #include <list>
-#include <"connect.hpp">
+#include "connect.hpp"
 
 using namespace std;
 using namespace mysqlpp;

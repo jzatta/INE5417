@@ -6,8 +6,8 @@ class FileMapper;
 #include <iostream>
 #include <stdlib.h>
 #include <mysql++.h>
-#include <"../model/File.hpp">
-#include <"connect.hpp">
+#include "File.hpp"
+#include "connect.hpp"
 
 using namespace std;
 using namespace mysqlpp;

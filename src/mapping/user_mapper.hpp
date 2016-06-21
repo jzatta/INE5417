@@ -6,8 +6,8 @@ class UserMapper;
 #include <iostream>
 #include <stdlib.h>
 #include <mysql++.h>
-#include <"../model/user.hpp">
-#include <"connect.hpp">
+#include "user.hpp"
+#include "connect.hpp"
 
 using namespace std;
 using namespace mysqlpp;

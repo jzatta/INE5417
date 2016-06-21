@@ -6,10 +6,10 @@ class LogMapper;
 #include <iostream>
 #include <stdlib.h>
 #include <mysql++.h>
-#include <"connect.hpp">
-#include <"../model/Log.hpp">
-#include <"../model/user.hpp">
-#include <"../model/File.hpp">
+#include "connect.hpp"
+#include "Log.hpp"
+#include "user.hpp"
+#include "File.hpp"
 
 using namespace std;
 using namespace mysqlpp;

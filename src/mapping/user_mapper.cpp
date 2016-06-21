@@ -5,12 +5,12 @@
 #include <mysql++.h>
 
 // other classes includes
-#include <"../model/user.hpp">
-#include <"../model/superUser.hpp">
-#include <"../model/commonUser.hpp">
+#include "user.hpp"
+#include "superUser.hpp"
+#include "commonUser.hpp"
 #include <"user_mapper.hpp">
-#include <"connect.hpp">
-#include <"../exceptions/databaseException.hpp">
+#include "connect.hpp"
+#include "databaseException.hpp"
 
 using namespace std;
 using namespace mysqlpp;

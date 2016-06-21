@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <mysql++.h>
-#include <"../exceptions/databaseException.hpp">
+#include "databaseException.hpp"
 
 using namespace std;
 using namespace mysqlpp;

@@ -1,9 +1,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <mysql++.h>
-#include <"connect.hpp">
-#include <"../model/Log.hpp">
-#include <"../model/File.hpp">
+#include "connect.hpp"
+#include "Log.hpp"
+#include "File.hpp"
 
 LogMapper(Connect _conn) {
   this->conn = _conn->getConnection();
