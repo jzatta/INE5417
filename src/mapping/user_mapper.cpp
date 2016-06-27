@@ -18,8 +18,8 @@
 using namespace std;
 using namespace mysqlpp;
 
-UserMapper::UserMapper(Connect *_conn) {
-  this->conn = _conn->getConnection();
+UserMapper::UserMapper() {
+  this->conn = Connect::getConnection();
 }
 
 list<User*> *UserMapper::loadUsers() {

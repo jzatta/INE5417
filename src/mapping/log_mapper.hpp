@@ -20,7 +20,6 @@ class LogMapper {
 
   public:
     LogMapper();
-    LogMapper(Connect *_conn);
     list<Log*> *loadLogs(File *_file);
     void saveLog(Log *_log, string *_fname);
 };

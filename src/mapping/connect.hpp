@@ -12,12 +12,10 @@ using namespace mysqlpp;
 
 class Connect {
   private:
-    Connection *conn;
-
+    static Connection *conn;
+    static void connect_db();
   public:
-    Connection *getConnection();
-    Connect();
-    void connect_db();
+    static Connection *getConnection();
 };
 
 #endif
