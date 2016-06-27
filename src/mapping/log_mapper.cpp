@@ -51,6 +51,7 @@ void LogMapper::saveLog(Log *_log, string *_fname) {
     Query query = this->conn->query();
 
     query << "INSERT INTO log" << "VALUES ("
+          << "''," // AUTO INCREMENT COLLUMN
           << _log->getChange() << ", " 
           << _log->getOwner() << ", " 
           << _log->getTime() << ", " 
