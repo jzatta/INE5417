@@ -11,8 +11,8 @@
 using namespace std;
 using namespace mysqlpp;
 
-FileMapper::FileMapper(Connect *_conn) {
-  this->conn = _conn->getConnection();
+FileMapper::FileMapper() {
+  this->conn = Connect::getConnection();
 }
 
 list<File*> *FileMapper::loadFiles() {

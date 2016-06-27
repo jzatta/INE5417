@@ -7,14 +7,12 @@
 using namespace std;
 using namespace mysqlpp;
 
-Connect::Connect() {
-  connect_db();
-}
+Connection *Connect::conn = NULL;
 
 void Connect::connect_db() {
   try {
-    this->conn->connect("root", "localhost", "root", "root");
-    Query query = conn->query();
+    conn = new Connection(false);
+    conn->connect("root", "localhost", "root", "root");
   } catch (BadQuery er) {
     throw DatabaseException::badQuery(er);
   } catch (const BadConversion &er) {
@@ -24,4 +22,11 @@ void Connect::connect_db() {
   }
 
   //return(EXIT_SUCCESS);
+}
+
+Connection *Connect::getConnection() {
+  if (Connect::conn == NULL) {
+    Connect::connect_db();
+  }
+  return conn;
 }

@@ -1,8 +1,9 @@
-
 #include "filemanager.hpp"
 #include <iostream>
 #include <string>
 #include <list>
+
+FileManager *FileManager::fm = NULL;
 
 FileManager::FileManager() {
   this->files = new list<File*>();
@@ -72,8 +73,8 @@ string *FileManager::fileLogVersion(string *fileName, int version) {
 }
 
 FileManager *FileManager::getFileManager(list<File*> *_files) {
-  if(this->fm == NULL) {
-    this->fm = new FileManager(_files);
+  if(FileManager::fm == NULL) {
+    FileManager::fm = new FileManager(_files);
   }
-  return this->fm;
+  return FileManager::fm;
 }

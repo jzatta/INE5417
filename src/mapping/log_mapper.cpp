@@ -9,8 +9,8 @@
 #include "File.hpp"
 #include "databaseException.hpp"
 
-LogMapper::LogMapper(Connect *_conn) {
-  this->conn = _conn->getConnection();
+LogMapper::LogMapper() {
+  this->conn = Connect::getConnection();
 }
 
 // load logs list to each file
