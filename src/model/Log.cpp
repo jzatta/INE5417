@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <malloc.h>
+#include "log_mapper.hpp"
 
 
 using namespace std;

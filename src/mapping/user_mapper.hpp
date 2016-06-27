@@ -20,6 +20,7 @@ class UserMapper {
     UserMapper();
     list<User*> *loadUsers();
     void saveUser(User *_user);
+    void deleteUser(string *_usrName);
 };
 
 #endif

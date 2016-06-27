@@ -30,7 +30,7 @@ list<User*> *UserMapper::loadUsers() {
   try {
     Query query = this->conn->query();
 
-    query << "SELECT * FROM user";
+    query << "SELECT * FROM username";
     StoreQueryResult ares = query.store();
     for(size_t i = 0; i < ares.num_rows(); i++) {
       _name = new string(ares[i]["name"]);
@@ -63,7 +63,7 @@ void UserMapper::saveUser(User *_user) {
   try {
     Query query = this->conn->query();
 
-    query << "INSERT INTO user" << "VALUES ("
+    query << "INSERT INTO username" << "VALUES ("
           << _user->getName() << ", " << _user->getPswd()
           << ", " << _auth << "\"" << ");";
     query.execute();
@@ -73,6 +73,23 @@ void UserMapper::saveUser(User *_user) {
   } catch (const BadConversion &er) {
     throw DatabaseException::badConversion(er);
   } catch (const Exception &er) {
+    throw DatabaseException::exception(er);
+  }
+}
+
+void UserMapper::deleteUser(string *_usrName) {
+  try {
+    Query query = this->conn->query();
+
+    query << "DELETE FROM username WHERE name = '" <<
+          << *_usrName << "'";
+
+    query.execute();
+  } catch(BadQuery er) {
+    throw DatabaseException::badQuery(er);
+  } catch(const BadConversion &er) {
+    throw DatabaseException::badConversion(er);
+  } catch(const Exception &er) {
     throw DatabaseException::exception(er);
   }
 }

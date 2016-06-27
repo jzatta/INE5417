@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "file_mapper.hpp"
+#include "user_mapper.hpp"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ string *SuperUser::addUser(UserManager *uM, string *_name, string *_pswd, bool _
   }
   // need to check if exists the user
   uM->create(usr);
+  UserMapper::saveUser(usr);
   return new string("created");
 }
 
@@ -32,6 +34,7 @@ string *SuperUser::removeUser(UserManager *uM, string *_username) {
   // need to check if exists the user
   if (uM->exclude(_username)) {
     delete verify;
+    UserMapper::deleteUser(_username);
     verify = new string("removed");
   }
   return verify;
