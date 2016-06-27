@@ -56,3 +56,39 @@ void FileMapper::saveFile(File *_file) {
     throw DatabaseException::exception(er);
   }
 }
+
+void FileMapper::deleteFile(string *_fname) {
+  try {
+    Query query = this->conn->query();
+
+    query << "DELETE FROM file " << "WHERE name = '"
+          << *_fname << "'";
+
+    query.execute();
+  } catch(BadQuery er) {
+    throw DatabaseException::badQuery(er);
+  } catch(const BadConversion &er) {
+    throw DatabaseException::badConversion(er);
+  } catch(const Exception &er) {
+    throw DatabaseException::exception(er);
+  }
+}
+
+void FileMapper::updateFile(File *_file) {
+  string *_fname = _file->getName();
+  try {
+    Query query = this->conn->query();
+
+    query << "UPDATE file SET name = " << _fname
+          << "counter = " << _file->getCounter()
+          << "WHERE name = '" << _fname << "'";
+
+    query.execute();
+  } catch(BadQuery er) {
+    throw DatabaseException::badQuery(er);
+  } catch(const BadConversion &er) {
+    throw DatabaseException::badConversion(er);
+  } catch(const Exception &er) {
+    throw DatabaseException::exception(er);
+  }
+}

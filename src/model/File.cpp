@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Log.hpp"
+#include "file_mapper.hpp"
 
 using namespace std;
 
@@ -54,6 +55,7 @@ void File::modify() {
   string nanoCommand, nano("nano ");
   nanoCommand = nano + *(this->fileName);
   system(nanoCommand.c_str());
+  FileMapper::updateFile(new File(this->fileName, this->counter));
 }
 
 int File::restore(User *u, int version) {
@@ -70,6 +72,7 @@ int File::restore(User *u, int version) {
   system(cpyCommand.c_str());
   sprintf(tmp, "Version %d restored", version);
   this->addLog(new Log(tmp, u));
+  FileMapper::updateFile(new File(this->fileName, this->counter));
   return 0;
 }
 

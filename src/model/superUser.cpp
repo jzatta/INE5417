@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
+#include "file_mapper.hpp"
 
 using namespace std;
 
@@ -41,13 +42,26 @@ bool SuperUser::isSuper() {
 }
 
 void SuperUser::addFile(FileManager *fM, string *_filename) {
-  fM->create(new File(_filename));
+  int checker = 0;
+  File *_file = new File(_filename);
+  list<File*> *listFiles = fm->getListFiles();
+  list<File*>::iterator it = listFiles->begin();
+  for(; it != listFiles->end(); ++it) {
+    if(strcmp((*it)->getName(), _file->getName())) {
+      checker = 1;
+    }
+  }
+  if(checker == 0) { 
+    FileMapper::saveFile(_file);
+    fM->create(new File(_filename));
+  }
 }
 
 string *SuperUser::removeFile(FileManager *fM, string *_filename) {
   string *verify = new string("don't exist");
   if (fM->exclude(_filename)) {
     delete verify;
+    FileMapper::deleteFile(_filename);
     verify = new string("removed");
   }
   return verify;

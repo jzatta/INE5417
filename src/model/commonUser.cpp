@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include "file_mapper.hpp"
 
 using namespace std;
 
@@ -25,7 +26,19 @@ string *CommonUser::removeUser(UserManager *uM, string *_username) {
 
 void CommonUser::addFile(FileManager *fM, string *_fname) {
   // need to check if exists the file
-  fM->create(new File(_fname));
+  int checker = 0;
+  File *_file = new File(_fname);
+  list<File*> *listFiles = fm->getListFiles();
+  list<File*>::iterator it = listFiles->begin();
+  for(; it != listFiles->end(); ++it) {
+    if(strcmp((*it)->getName(), _file->getName())) {
+      checker = 1;
+    }
+  }
+  if(checker == 0) { 
+    FileMapper::saveFile(_file);
+    fM->create(new File(_filename));
+  }
 }
 
 bool CommonUser::isSuper() {
@@ -36,6 +49,7 @@ string *CommonUser::removeFile(FileManager *fM, string *_filename) {
   string *verify = new string("don't exist");
   if (fM->exclude(_filename)) {
     delete verify;
+    FileMapper::deleteFile(_filename);
     verify = new string("removed");
   }
   return verify;

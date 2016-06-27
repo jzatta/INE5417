@@ -20,6 +20,8 @@ class FileMapper {
     FileMapper();
     list<File*> *loadFiles();
     void saveFile(File *_file);
+    void deleteFile(string *_fname);
+    void updateFile(File *_file);
 };
 
 #endif
