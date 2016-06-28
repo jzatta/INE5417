@@ -164,6 +164,8 @@ int GUI::mainScreen() {
   cout << "list files" << endl;
   cout << "list logs" << endl;
   cout << "change user" << endl;
+  cout << "execute" << endl;
+  cout << "view content" << endl;
   cout << "exit" << endl;
   
   cin.getline(command, sizeof(command));
@@ -200,6 +202,14 @@ int GUI::mainScreen() {
   }
   else if (!strcmp(command, "exit")) {
     return 9;
+  }
+  else if (!strcmp(command, "execute")) {
+    return 12;
+  }
+  else if (!strcmp(command, "view content")) {
+    return 13;
+  }
+  }
   }
   return 0;
 }

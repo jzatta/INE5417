@@ -26,6 +26,8 @@ public:
   
   void restore();
   void diff();
+  void execute();
+  void viewContent();
 };
 
 #endif

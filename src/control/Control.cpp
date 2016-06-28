@@ -133,6 +133,13 @@ void Control::run() {
         this->diff();
         continue;
 
+      case 12:
+        this->execute();
+        continue;
+
+      case 13:
+        this->viewContent();
+        continue;
 
       default:
         continue;
@@ -221,3 +228,53 @@ void Control::diff() {
   GUI::getDiff(*f1Name, *f2Name);
   delete fName;
 }
+
+void Control::execute() {
+  string *_fname;
+  _fname = getFileName("choose file to compile and run");
+  string *_command = new string();
+  GUI::clearScreen();
+  _command += ("gcc -o main " + _fname);
+  system(_fname);
+  system("./main");
+  GUI::clearScreen();
+  delete _fname;
+  delete _command;
+}
+
+void Control::viewContent() {
+  string *_fname;
+  list<Log*> *_logs = new list<Log*>;
+  std::list<string*>::iterator itLog;
+
+  _fname = GUI::getFileName("to check differences between the previous one");
+  listLogs = fM->listLogs(_fname);
+
+  if(listLogs == NULL) {
+    GUI::dontExist();
+    return;
+  }
+  int _ver;
+  GUI::clearScreen();
+  itLog = listLogs->begin();
+  for (; itLog != listLogs->end(); ++itLog) {
+    GUI::listLog(*itLog);
+    delete *itLog;
+  }
+  delete listLogs;
+  
+  _ver = GUI::getVersionDiff();
+  if(_ver <= 1) {
+    GUI::dontExist();
+    return;
+  }
+  string *_command = new string();
+  _command += "cat ";
+  _command += fM->fileLogVersion(_fname, _ver);
+  system(_command);
+  GUI::clearScreen();
+  delete _fname;
+  delete _command;
+}
+  
+
