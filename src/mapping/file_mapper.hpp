@@ -14,14 +14,12 @@ using namespace mysqlpp;
 
 class FileMapper {
   private:
-    Connection *conn;
 
   public:
-    FileMapper();
-    list<File*> *loadFiles();
-    void saveFile(File *_file);
-    void deleteFile(string *_fname);
-    void updateFile(File *_file);
+    static list<File*> *loadFiles();
+    static void saveFile(File *_file);
+    static void deleteFile(string *_fname);
+    static void updateFile(File *_file);
 };
 
 #endif

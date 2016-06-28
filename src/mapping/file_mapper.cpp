@@ -11,16 +11,12 @@
 using namespace std;
 using namespace mysqlpp;
 
-FileMapper::FileMapper() {
-  this->conn = Connect::getConnection();
-}
-
 list<File*> *FileMapper::loadFiles() {
   string *fileName;
   int counter;
   list<File*> *files = new list<File*>();
   try {
-    Query query = this->conn->query();
+    Query query = Connect::getConnection()->query();
 
     query << "SELECT * FROM file";
     StoreQueryResult ares = query.store();
@@ -42,7 +38,7 @@ list<File*> *FileMapper::loadFiles() {
 
 void FileMapper::saveFile(File *_file) {
   try {
-    Query query = this->conn->query();
+    Query query = Connect::getConnection()->query();
 
     query << "INSERT INTO file" << "VALUES ("
           << _file->getName() << ", " << _file->getCounter() 
@@ -59,7 +55,7 @@ void FileMapper::saveFile(File *_file) {
 
 void FileMapper::deleteFile(string *_fname) {
   try {
-    Query query = this->conn->query();
+    Query query = Connect::getConnection()->query();
 
     query << "DELETE FROM file " << "WHERE name = '"
           << *_fname << "'";
@@ -77,7 +73,7 @@ void FileMapper::deleteFile(string *_fname) {
 void FileMapper::updateFile(File *_file) {
   string *_fname = _file->getName();
   try {
-    Query query = this->conn->query();
+    Query query = Connect::getConnection()->query();
 
     query << "UPDATE file SET name = " << _fname
           << "counter = " << _file->getCounter()

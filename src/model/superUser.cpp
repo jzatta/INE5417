@@ -47,10 +47,10 @@ bool SuperUser::isSuper() {
 void SuperUser::addFile(FileManager *fM, string *_filename) {
   int checker = 0;
   File *_file = new File(_filename);
-  list<File*> *listFiles = fm->getListFiles();
+  list<File*> *listFiles = fM->getListFiles();
   list<File*>::iterator it = listFiles->begin();
   for(; it != listFiles->end(); ++it) {
-    if(strcmp((*it)->getName(), _file->getName())) {
+    if(strcmp((*it)->getName()->c_str(), _file->getName()->c_str())) {
       checker = 1;
     }
   }

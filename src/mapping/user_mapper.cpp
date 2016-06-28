@@ -18,17 +18,13 @@
 using namespace std;
 using namespace mysqlpp;
 
-UserMapper::UserMapper() {
-  this->conn = Connect::getConnection();
-}
-
 list<User*> *UserMapper::loadUsers() {
   string *_name;
   string *_pswd;
   string *_auth;
   list<User*> *users = new list<User*>();
   try {
-    Query query = this->conn->query();
+    Query query = Connect::getConnection()->query();
 
     query << "SELECT * FROM username";
     StoreQueryResult ares = query.store();
@@ -61,7 +57,7 @@ void UserMapper::saveUser(User *_user) {
   }
 
   try {
-    Query query = this->conn->query();
+    Query query = Connect::getConnection()->query();
 
     query << "INSERT INTO username" << "VALUES ("
           << _user->getName() << ", " << _user->getPswd()
@@ -79,9 +75,9 @@ void UserMapper::saveUser(User *_user) {
 
 void UserMapper::deleteUser(string *_usrName) {
   try {
-    Query query = this->conn->query();
+    Query query = Connect::getConnection()->query();
 
-    query << "DELETE FROM username WHERE name = '" <<
+    query << "DELETE FROM username WHERE name = '"
           << *_usrName << "'";
 
     query.execute();
