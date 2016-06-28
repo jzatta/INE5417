@@ -28,16 +28,16 @@ void CommonUser::addFile(FileManager *fM, string *_fname) {
   // need to check if exists the file
   int checker = 0;
   File *_file = new File(_fname);
-  list<File*> *listFiles = fm->getListFiles();
+  list<File*> *listFiles = fM->getListFiles();
   list<File*>::iterator it = listFiles->begin();
   for(; it != listFiles->end(); ++it) {
-    if(strcmp((*it)->getName(), _file->getName())) {
+    if(strcmp((*it)->getName()->c_str(), _file->getName()->c_str())) {
       checker = 1;
     }
   }
   if(checker == 0) { 
     FileMapper::saveFile(_file);
-    fM->create(new File(_filename));
+    fM->create(new File(_fname));
   }
 }
 

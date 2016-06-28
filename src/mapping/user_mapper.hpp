@@ -14,13 +14,11 @@ using namespace mysqlpp;
 
 class UserMapper {
   private:
-    Connection *conn;
 
   public:
-    UserMapper();
-    list<User*> *loadUsers();
-    void saveUser(User *_user);
-    void deleteUser(string *_usrName);
+    static list<User*> *loadUsers();
+    static void saveUser(User *_user);
+    static void deleteUser(string *_usrName);
 };
 
 #endif

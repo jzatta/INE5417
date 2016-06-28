@@ -11,7 +11,7 @@
 Control::Control() {
   // must initialize uM and fM reading from BD/conf files
   this->uM = new UserManager(UserMapper::loadUsers());
-  this->fM = new FileManager(FileMapper::loadFiles());
+  this->fM = FileManager::getFileManager(FileMapper::loadFiles());
   this->logged = NULL;
 }
 
