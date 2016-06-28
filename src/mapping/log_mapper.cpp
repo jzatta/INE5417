@@ -50,14 +50,14 @@ void LogMapper::saveLog(Log *_log, string *_fname) {
   try {
     Query query = this->conn->query();
 
-    query << "INSERT INTO log" << "VALUES ("
-          << "''," // AUTO INCREMENT COLLUMN
-          << _log->getChange() << ", " 
-          << _log->getOwner() << ", " 
-          << _log->getTime() << ", " 
-          << _log->getSequence() << ", "
-          << _fname << "\"" << ");";
+    query << "INSERT INTO `log`(`change`,`owner`,`data`,`sequence`,`name`) VALUES ('"
+          << _log->getChange()->c_str() << "', '"
+          << _log->getOwner()->c_str() << "', "
+          << _log->getTime() << ", "
+          << _log->getSequence() << ", '"
+          << _fname->c_str() << "'" << ");";
     
+          
     query.execute();
   } catch(BadQuery er) {
     throw DatabaseException::badQuery(er);

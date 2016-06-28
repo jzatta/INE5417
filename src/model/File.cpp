@@ -98,8 +98,6 @@ void File::addLog(Log *log) {
 }
 
 list<string*> *File::listLogs() {
-  // maybe return a list of strings
-#if 1
   time_t *time;
   string *owner;
   string *log;
@@ -122,7 +120,4 @@ list<string*> *File::listLogs() {
     logsString->push_back(new string(tmpStr));
   }
   return logsString;
-#else
-  return logs;
-#endif
 }

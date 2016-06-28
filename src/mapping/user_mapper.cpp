@@ -59,9 +59,9 @@ void UserMapper::saveUser(User *_user) {
   try {
     Query query = Connect::getConnection()->query();
 
-    query << "INSERT INTO username" << "VALUES ("
-          << _user->getName() << ", " << _user->getPswd()
-          << ", " << _auth << "\"" << ");";
+    query << "INSERT INTO `username`" << "VALUES ('"
+          << _user->getName()->c_str() << "', '" << _user->getPswd()->c_str()
+          << "', '" << _auth << "'" << ");";
     query.execute();
 
   } catch (BadQuery er) {

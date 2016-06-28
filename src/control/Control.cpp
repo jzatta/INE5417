@@ -231,25 +231,26 @@ void Control::diff() {
 
 void Control::execute() {
   string *_fname;
-  _fname = getFileName("choose file to compile and run");
-  string *_command = new string();
+  _fname = GUI::getFileName("choose file to compile and run");
+  string _command;
   GUI::clearScreen();
-  _command += ("gcc -o main " + _fname);
-  system(_fname);
+  _command += "gcc -o main ";
+  _command += *_fname;
+  system(_command.c_str());
   system("./main");
   GUI::clearScreen();
   delete _fname;
-  delete _command;
 }
 
 void Control::viewContent() {
   string *_fname;
   list<Log*> *_logs = new list<Log*>;
+  std::list<string*> *listLogs;
   std::list<string*>::iterator itLog;
-
+  
   _fname = GUI::getFileName("to check differences between the previous one");
   listLogs = fM->listLogs(_fname);
-
+  
   if(listLogs == NULL) {
     GUI::dontExist();
     return;
@@ -268,13 +269,12 @@ void Control::viewContent() {
     GUI::dontExist();
     return;
   }
-  string *_command = new string();
+  string _command;
   _command += "cat ";
-  _command += fM->fileLogVersion(_fname, _ver);
-  system(_command);
+  _command += *(fM->fileLogVersion(_fname, _ver));
+  system(_command.c_str());
   GUI::clearScreen();
   delete _fname;
-  delete _command;
 }
-  
+
 

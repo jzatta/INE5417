@@ -31,7 +31,7 @@ void CommonUser::addFile(FileManager *fM, string *_fname) {
   list<File*> *listFiles = fM->getListFiles();
   list<File*>::iterator it = listFiles->begin();
   for(; it != listFiles->end(); ++it) {
-    if(strcmp((*it)->getName()->c_str(), _file->getName()->c_str())) {
+    if(!strcmp((*it)->getName()->c_str(), _file->getName()->c_str())) {
       checker = 1;
     }
   }

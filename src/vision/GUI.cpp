@@ -209,8 +209,6 @@ int GUI::mainScreen() {
   else if (!strcmp(command, "view content")) {
     return 13;
   }
-  }
-  }
   return 0;
 }
 

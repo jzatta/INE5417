@@ -40,9 +40,9 @@ void FileMapper::saveFile(File *_file) {
   try {
     Query query = Connect::getConnection()->query();
 
-    query << "INSERT INTO file" << "VALUES ("
-          << _file->getName() << ", " << _file->getCounter() 
-          << "\"" << ");";
+    query << "INSERT INTO `file`" << "VALUES ('"
+          << _file->getName()->c_str() << "', " << _file->getCounter()
+          << "" << ");";
     query.execute();
   } catch(BadQuery er) {
     throw DatabaseException::badQuery(er);
