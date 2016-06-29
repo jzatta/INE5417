@@ -25,8 +25,8 @@ list<Log*> *LogMapper::loadLogs(File *_file) {
   try {
     Query query = this->conn->query();
 
-    query << "SELECT * FROM log WHERE file = "
-          << *_name;
+    query << "SELECT * FROM log WHERE file = `"
+          << *_name << "`";
 
     StoreQueryResult ares = query.store();
     for(size_t i = 0; i < ares.num_rows(); i++) {

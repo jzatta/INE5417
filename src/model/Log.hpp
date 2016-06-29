@@ -16,10 +16,12 @@ private:
   string *owner;
   time_t *date;
   int sequence;
+  string *fname;
   
 public:
   Log(const char *change, User *owner);
   Log(string *change, User *owner);
+  Log(string *change, User *owner, string *fname);
   // created to load logs from db
   Log(string *change, string *owner, time_t *date, int sequence);
   void saveLog(string *_logname);
@@ -31,7 +33,7 @@ public:
   string *getOwner();
   int getSequence();
   void setSequence(int _sequence);
-  void setChange(string *_chenge);
+  void setChange(string *_change);
 };
 
 #endif

@@ -6,12 +6,20 @@
 #include "GUI.hpp"
 #include "file_mapper.hpp"
 #include "user_mapper.hpp"
+#include "log_mapper.hpp"
 #include "connect.hpp"
 
 Control::Control() {
+  list<Log*> *logs;
   // must initialize uM and fM reading from BD/conf files
   this->uM = new UserManager(UserMapper::loadUsers());
   this->fM = FileManager::getFileManager(FileMapper::loadFiles());
+  list<File*> *_files = this->fM->getListFiles();
+  std::list<File*>::iterator itFile;
+  itFile = _files->begin();
+  for(; itFile != _files->end(); ++itFile) {
+    itFile->setLogs(LogMapper::loadLogs(itFile);
+  }
   this->logged = NULL;
 }
 
@@ -85,7 +93,7 @@ void Control::run() {
       
         file->modify();
         fLog = GUI::getChanges();
-        file->addLog(new Log(fLog, this->logged));
+        file->addLog(new Log(fLog, this->logged, file->getName()));
         continue;
       
       case 6: // list files

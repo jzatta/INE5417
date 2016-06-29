@@ -31,6 +31,8 @@ public:
 
   void setName(string *_name);
 
+  void setLogs(list<Log*> *_logs);
+
   string *fileLogVersion(int version);
   
   void modify();

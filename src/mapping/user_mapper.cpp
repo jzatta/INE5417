@@ -46,7 +46,7 @@ list<User*> *UserMapper::loadUsers() {
     throw DatabaseException::exception(er);
   }
   return users;
-}
+
 
 void UserMapper::saveUser(User *_user) {
   string _auth;

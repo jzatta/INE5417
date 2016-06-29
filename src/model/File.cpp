@@ -71,7 +71,7 @@ int File::restore(User *u, int version) {
   cpyCommand = cpy + " ." + *(this->fileName) + tmp + *(this->fileName);
   system(cpyCommand.c_str());
   sprintf(tmp, "Version %d restored", version);
-  this->addLog(new Log(tmp, u));
+  this->addLog(new Log(tmp, u, this->fileName));
   FileMapper::updateFile(new File(this->fileName, this->counter));
   return 0;
 }
@@ -95,6 +95,10 @@ string *File::fileLogVersion(int version) {
 void File::addLog(Log *log) {
   log->setSequence(this->counter);
   this->logs->push_back(log);
+}
+
+void File::setLogs(list<Log*> *_logs) {
+  this->logs = _logs;
 }
 
 list<string*> *File::listLogs() {

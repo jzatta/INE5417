@@ -32,6 +32,14 @@ Log::Log(string *_change, string *_owner, time_t *_date, int _sequence) {
   this->sequence = _sequence;
 }
 
+Log::Log(string *_change, User *_owner, string *_fname) {
+  this->change = new string(change);
+  this->owner = _owner->getName();
+  this->date = (time_t*)malloc(sizeof(time_t));
+  time(this->date);
+  this->fname = _fname;
+}
+
 void Log::saveLog(string *_logname) {
   ofstream myFile;
   myFile.open(_logname->c_str());

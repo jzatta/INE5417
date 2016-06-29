@@ -64,6 +64,9 @@ string *SuperUser::removeFile(FileManager *fM, string *_filename) {
   string *verify = new string("don't exist");
   if (fM->exclude(_filename)) {
     delete verify;
+    string *_command = new string("rm ");
+    _command += _filename;
+    system(_command);
     FileMapper::deleteFile(_filename);
     verify = new string("removed");
   }
